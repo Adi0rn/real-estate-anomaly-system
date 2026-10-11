@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  userId       Int      @id @default(autoincrement())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         String   @default("USER")
+  createdAt    DateTime @default(now())
+
+  properties Property[]
+  reviews    PropertyAnomaly[] @relation("ReviewedBy")
+}
+
+model Property {
+  propertyId   Int      @id @default(autoincrement())
+  title        String
+  description  String
+  propertyType String
+  listingType  String
+  price        Decimal  @db.Decimal(15, 2)
+  areaSqft     Int
+  bedrooms     Int
+  bathrooms    Int
+  address      String
+  city         String
+  state        String
+  pincode      String
+  latitude     Decimal? @db.Decimal(10, 7)
+  longitude    Decimal? @db.Decimal(10, 7)
+  status       String   @default("ACTIVE")
+  ownerId      Int
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  owner        User              @relation(fields: [ownerId], references: [userId])
+  priceHistory PriceHistory[]
+  anomalies    PropertyAnomaly[]
+  amenities    PropertyAmenity[]
+
+  @@index([city])
+  @@index([propertyType])
+  @@index([price])
+  @@index([bedrooms])
+}
+
+model Amenity {
+  amenityId Int    @id @default(autoincrement())
+  name      String @unique
+
+  properties PropertyAmenity[]
+}
+
+model PropertyAmenity {
+  propertyId Int
+  amenityId  Int
+
+  property Property @relation(fields: [propertyId], references: [propertyId], onDelete: Cascade)
+  amenity  Amenity  @relation(fields: [amenityId], references: [amenityId], onDelete: Cascade)
+
+  @@id([propertyId, amenityId])
+}
+
+model PriceHistory {
+  priceId    Int      @id @default(autoincrement())
+  propertyId Int
+  price      Decimal  @db.Decimal(15, 2)
+  recordedAt DateTime @default(now())
+
+  property Property @relation(fields: [propertyId], references: [propertyId], onDelete: Cascade)
+
+  @@index([propertyId, recordedAt])
+}
+
+model PropertyAnomaly {
+  anomalyId       Int       @id @default(autoincrement())
+  propertyId      Int       @unique
+  expectedPrice   Decimal   @db.Decimal(15, 2)
+  actualPrice     Decimal   @db.Decimal(15, 2)
+  priceDifference Decimal   @db.Decimal(15, 2)
+  anomalyScore    Decimal   @db.Decimal(6, 3)
+  reason          String
+  status          String    @default("PENDING")
+  detectedAt      DateTime  @default(now())
+  reviewedBy      Int?
+  reviewedAt      DateTime?
+
+  property Property @relation(fields: [propertyId], references: [propertyId], onDelete: Cascade)
+  reviewer User?    @relation("ReviewedBy", fields: [reviewedBy], references: [userId])
+
+  @@index([status])
+  @@index([propertyId])
+}
