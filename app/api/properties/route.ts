@@ -3,7 +3,7 @@ import { PrismaClient } from "@/src/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 
 const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL!,
+  connectionString: process.env.DATABASE_URL || "",
 });
 
 const prisma = new PrismaClient({ adapter });
@@ -46,7 +46,13 @@ export async function GET(request: NextRequest) {
         price: property.price.toString(),
       })),
     });
-  } catch (error) {
+  } catch (error: unknown) {
+    if (typeof error === "object" && error !== null && "digest" in error) {
+      const digest = (error as { digest?: unknown }).digest;
+      if (typeof digest === "string" && digest.startsWith("NEXT_")) {
+        throw error;
+      }
+    }
     console.error("Property retrieval API error:", error);
 
     return NextResponse.json(

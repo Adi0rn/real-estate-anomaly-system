@@ -1,24 +1,24 @@
 
 import { NextRequest, NextResponse } from "next/server";
-import { pipeline } from "@xenova/transformers";
+import { pipeline, FeatureExtractionPipeline } from "@xenova/transformers";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../../../src/generated/prisma/client";
 
 const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL!,
+  connectionString: process.env.DATABASE_URL || "",
 });
 
 const prisma = new PrismaClient({ adapter });
 
 // Load the embedding model once and reuse it
-let extractorPromise: ReturnType<typeof pipeline> | null = null;
+let extractorPromise: Promise<FeatureExtractionPipeline> | null = null;
 
-function getExtractor() {
+function getExtractor(): Promise<FeatureExtractionPipeline> {
   if (!extractorPromise) {
     extractorPromise = pipeline(
       "feature-extraction",
       "Xenova/all-MiniLM-L6-v2"
-    );
+    ) as Promise<FeatureExtractionPipeline>;
   }
   return extractorPromise;
 }
@@ -27,7 +27,6 @@ type SearchResult = {
   propertyId: number;
   title: string;
   description: string | null;
-  similarity: number;
 };
 
 export async function GET(request: NextRequest) {
@@ -82,7 +81,7 @@ if (
     const output = await extractor(query, {
         pooling: "mean",
         normalize: true,
-    } as any);
+    } as unknown as Record<string, unknown>);
 
     const vector = Array.from(
         (output as { data: Float32Array }).data
@@ -119,7 +118,13 @@ if (
       count: results.length,
       results,
     });
-  } catch (error) {
+  } catch (error: unknown) {
+    if (typeof error === "object" && error !== null && "digest" in error) {
+      const digest = (error as { digest?: unknown }).digest;
+      if (typeof digest === "string" && digest.startsWith("NEXT_")) {
+        throw error;
+      }
+    }
     console.error("Semantic search error:", error);
 
     return NextResponse.json(

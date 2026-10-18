@@ -1,15 +1,23 @@
-import { NextResponse } from "next/server";
-import { Prisma, PrismaClient } from "@/src/generated/prisma/client";
+import { NextRequest, NextResponse } from "next/server";
+import { PrismaClient } from "@/src/generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { requireAdmin } from "@/src/lib/auth";
 
 const adapter = new PrismaPg({
-  connectionString: process.env.DATABASE_URL!,
+  connectionString: process.env.DATABASE_URL || "",
 });
 
 const prisma = new PrismaClient({ adapter });
 
-export async function GET() {
+export async function GET(request: NextRequest) {
   try {
+    const authCheck = await requireAdmin(request);
+    if (!authCheck.authorized) {
+      return NextResponse.json(
+        { success: false, error: authCheck.error },
+        { status: authCheck.status },
+      );
+    }
     const anomalies = await prisma.propertyAnomaly.findMany({
       orderBy: {
         detectedAt: "desc",
@@ -44,7 +52,13 @@ export async function GET() {
         detectedAt: anomaly.detectedAt,
       })),
     });
-  } catch (error) {
+  } catch (error: unknown) {
+    if (typeof error === "object" && error !== null && "digest" in error) {
+      const digest = (error as { digest?: unknown }).digest;
+      if (typeof digest === "string" && digest.startsWith("NEXT_")) {
+        throw error;
+      }
+    }
     console.error("Anomaly retrieval API error:", error);
 
     return NextResponse.json(
