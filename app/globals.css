@@ -1,12 +1,25 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #fbfbfa;
   --foreground: #0f172a;
   --surface: #ffffff;
+  --surface-secondary: #f8fafc;
   --border: #e2e8f0;
   --border-subtle: #f1f5f9;
   --accent: #0f172a;
+}
+
+.dark {
+  --background: #111315;
+  --foreground: #f3f4f6;
+  --surface: #191c1f;
+  --surface-secondary: #202428;
+  --border: #30363d;
+  --border-subtle: #21262d;
+  --accent: #38bdf8;
 }
 
 @theme inline {
@@ -47,7 +60,19 @@ body {
   background: #94a3b8;
 }
 
+.dark ::-webkit-scrollbar-thumb {
+  background: #30363d;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
 ::selection {
   background-color: #0f172a;
   color: #f8fafc;
+}
+
+.dark ::selection {
+  background-color: #38bdf8;
+  color: #0f172a;
 }

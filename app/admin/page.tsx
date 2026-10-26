@@ -22,27 +22,35 @@ export default function AdminPage() {
 
   const [user, setUser] = useState<SafeUser | null>(null);
   const [authChecked, setAuthChecked] = useState<boolean>(false);
-
   const [anomalies, setAnomalies] = useState<AnomalyRecord[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [isDbConnected, setIsDbConnected] = useState<boolean | null>(null);
   const [selectedPropertyId, setSelectedPropertyId] = useState<number | null>(null);
 
+  // Review action state
   const [isReviewingId, setIsReviewingId] = useState<number | null>(null);
-  const [reviewMessage, setReviewMessage] = useState<{ text: string; type: "success" | "error" } | null>(null);
+  const [reviewMessage, setReviewMessage] = useState<{
+    text: string;
+    type: "success" | "error";
+  } | null>(null);
 
-  // Fetch anomalies (secured API: requires ADMIN)
+  // Fetch anomalies from GET /api/anomalies
   const fetchAnomalies = useCallback(async () => {
     try {
       const res = await fetch("/api/anomalies");
       const data = await res.json();
 
+      if (res.status === 401) {
+        router.push("/login?redirect=/admin");
+        return;
+      }
+
+      if (res.status === 403) {
+        throw new Error(data.error || "Administrative permissions required.");
+      }
+
       if (!res.ok || !data.success) {
-        if (res.status === 401 || res.status === 403) {
-          throw new Error(data.error || "Administrator authorization required.");
-        }
-        setIsDbConnected(false);
         throw new Error(data.error || "Failed to retrieve anomalies.");
       }
 
@@ -50,15 +58,14 @@ export default function AdminPage() {
       setAnomalies(data.anomalies || []);
       setError(null);
     } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : "Failed to load anomalies";
+      const message = err instanceof Error ? err.message : "Error fetching anomaly records";
       setError(message);
-      setAnomalies([]);
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  }, [router]);
 
-  // Initialize: verify auth and load anomalies if admin
+  // Check authentication & load initial anomalies
   useEffect(() => {
     let isMounted = true;
 
@@ -69,7 +76,7 @@ export default function AdminPage() {
 
         if (!isMounted) return;
 
-        if (!authData?.authenticated || !authData?.user) {
+        if (!authRes.ok || !authData.authenticated || !authData.user) {
           router.push("/login?redirect=/admin");
           return;
         }
@@ -162,10 +169,10 @@ export default function AdminPage() {
   // Auth checking skeleton
   if (!authChecked) {
     return (
-      <div className="min-h-screen bg-[#fbfbfa] text-slate-900 flex items-center justify-center">
+      <div className="min-h-screen bg-[#fbfbfa] dark:bg-[#111315] text-slate-900 dark:text-[#f3f4f6] flex items-center justify-center transition-colors">
         <div className="text-center">
-          <span className="h-6 w-6 animate-spin rounded-full border-2 border-slate-900 border-t-transparent inline-block" />
-          <p className="mt-3 text-xs text-slate-500 font-mono">Verifying administrative credentials...</p>
+          <span className="h-6 w-6 animate-spin rounded-full border-2 border-slate-900 dark:border-white border-t-transparent inline-block" />
+          <p className="mt-3 text-xs text-slate-500 dark:text-[#a1a8b0] font-mono">Verifying administrative credentials...</p>
         </div>
       </div>
     );
@@ -174,32 +181,32 @@ export default function AdminPage() {
   // Non-admin view (role === "USER")
   if (user && user.role !== "ADMIN") {
     return (
-      <div className="min-h-screen bg-[#fbfbfa] text-slate-900">
+      <div className="min-h-screen bg-[#fbfbfa] dark:bg-[#111315] text-slate-900 dark:text-[#f3f4f6] transition-colors duration-150">
         <Navbar />
         <main className="mx-auto max-w-xl px-4 py-24 text-center">
-          <div className="rounded-lg border border-slate-200 bg-white p-8 shadow-2xs">
-            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 mb-3">
+          <div className="rounded-lg border border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#191c1f] p-8 shadow-2xs">
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-[#202428] text-slate-700 dark:text-slate-300 mb-3">
               <IconLock className="h-5 w-5" />
             </div>
-            <h1 className="text-base font-bold text-slate-900">
+            <h1 className="text-base font-bold text-slate-900 dark:text-white">
               Administrator Privileges Required
             </h1>
-            <p className="mt-2 text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
+            <p className="mt-2 text-xs text-slate-600 dark:text-[#a1a8b0] max-w-md mx-auto leading-relaxed">
               Signed in as <strong>{user.email}</strong> with standard role{" "}
-              <span className="font-mono text-[11px] bg-slate-100 px-1 py-0.5 rounded text-slate-800">
+              <span className="font-mono text-[11px] bg-slate-100 dark:bg-[#202428] px-1 py-0.5 rounded text-slate-800 dark:text-slate-200">
                 {user.role}
               </span>. Reviewing and confirming pricing anomalies requires an authenticated ADMIN account.
             </p>
             <div className="mt-6 flex justify-center gap-3 text-xs">
               <Link
                 href="/"
-                className="rounded-md border border-slate-300 bg-white px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-50"
+                className="rounded-md border border-slate-300 dark:border-[#30363d] bg-white dark:bg-[#202428] px-3 py-1.5 font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-[#272c33] transition-colors"
               >
                 Return to Marketplace
               </Link>
               <Link
                 href="/login?redirect=/admin"
-                className="rounded-md bg-slate-900 px-3 py-1.5 font-semibold text-white hover:bg-slate-800"
+                className="rounded-md bg-slate-900 dark:bg-white px-3 py-1.5 font-semibold text-white dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-slate-100 transition-colors"
               >
                 Switch Account
               </Link>
@@ -212,28 +219,28 @@ export default function AdminPage() {
 
   // Admin view
   return (
-    <div className="min-h-screen bg-[#fbfbfa] text-slate-900">
+    <div className="min-h-screen bg-[#fbfbfa] dark:bg-[#111315] text-slate-900 dark:text-[#f3f4f6] transition-colors duration-150">
       <Navbar isDbConnected={isDbConnected} />
 
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 space-y-6">
         {/* Admin Header */}
-        <div className="border-b border-slate-200/90 pb-6">
+        <div className="border-b border-slate-200/90 dark:border-[#30363d] pb-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
-                <IconShieldAlert className="w-3.5 h-3.5 text-amber-600" />
+              <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#a1a8b0] mb-1.5">
+                <IconShieldAlert className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400" />
                 <span>Auditing Console • Authenticated Admin</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950 dark:text-white">
                 Statistical Pricing Anomaly Review
               </h1>
-              <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
+              <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-[#a1a8b0] max-w-2xl leading-relaxed">
                 Supervise automated pricing valuation anomalies. Confirm valid market discrepancies or dismiss false positive alerts generated by machine learning benchmarks.
               </p>
             </div>
 
-            <div className="rounded border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600 shadow-2xs self-start md:self-auto font-mono">
-              <span className="text-slate-400">Auditor:</span> {user?.name} ({user?.email})
+            <div className="rounded border border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#191c1f] px-3 py-1.5 text-xs text-slate-600 dark:text-slate-300 shadow-2xs self-start md:self-auto font-mono">
+              <span className="text-slate-400 dark:text-slate-500">Auditor:</span> {user?.name} ({user?.email})
             </div>
           </div>
         </div>

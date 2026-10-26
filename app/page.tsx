@@ -177,7 +177,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fbfbfa] text-slate-900">
+    <div className="min-h-screen bg-[#fbfbfa] dark:bg-[#111315] text-slate-900 dark:text-[#f3f4f6] transition-colors duration-150">
       {/* Institutional Top Navbar */}
       <Navbar
         isDbConnected={isDbConnected}
@@ -191,36 +191,36 @@ export default function Home() {
 
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 space-y-6">
         {/* Editorial Page Header */}
-        <div className="border-b border-slate-200/90 pb-6">
+        <div className="border-b border-slate-200/90 dark:border-[#30363d] pb-6">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
-              <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
-                <IconBuilding className="w-3.5 h-3.5 text-slate-700" />
+              <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-[#a1a8b0] mb-1.5">
+                <IconBuilding className="w-3.5 h-3.5 text-slate-700 dark:text-slate-300" />
                 <span>Market Directory & Valuation System</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950 dark:text-white">
                 Institutional Real Estate Index
               </h1>
-              <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
+              <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-[#a1a8b0] max-w-2xl leading-relaxed">
                 Browse verified residential and commercial assets with automated benchmark pricing audit. Flag statistical anomalies against comparable market median metrics.
               </p>
             </div>
 
             {/* Quick KPI Strip */}
-            <div className="flex items-center gap-4 text-xs font-mono tabular-nums border border-slate-200 bg-white px-3.5 py-2 rounded-md shadow-2xs self-start md:self-auto">
+            <div className="flex items-center gap-4 text-xs font-mono tabular-nums border border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#191c1f] px-3.5 py-2 rounded-md shadow-2xs self-start md:self-auto transition-colors">
               <div>
-                <span className="block text-[10px] uppercase font-sans text-slate-400">Tracked Units</span>
-                <span className="font-semibold text-slate-900">{isDbConnected ? "100" : "—"}</span>
+                <span className="block text-[10px] uppercase font-sans text-slate-400 dark:text-slate-500">Tracked Units</span>
+                <span className="font-semibold text-slate-900 dark:text-white">{isDbConnected ? "100" : "—"}</span>
               </div>
-              <div className="h-6 w-px bg-slate-200" />
+              <div className="h-6 w-px bg-slate-200 dark:bg-[#30363d]" />
               <div>
-                <span className="block text-[10px] uppercase font-sans text-slate-400">Audit Alerts</span>
-                <span className="font-semibold text-amber-700">{isDbConnected ? "7 Flagged" : "—"}</span>
+                <span className="block text-[10px] uppercase font-sans text-slate-400 dark:text-slate-500">Audit Alerts</span>
+                <span className="font-semibold text-amber-700 dark:text-amber-400">{isDbConnected ? "7 Flagged" : "—"}</span>
               </div>
-              <div className="h-6 w-px bg-slate-200" />
+              <div className="h-6 w-px bg-slate-200 dark:bg-[#30363d]" />
               <div>
-                <span className="block text-[10px] uppercase font-sans text-slate-400">Embedding Engine</span>
-                <span className="font-semibold text-slate-700">MiniLM-L6</span>
+                <span className="block text-[10px] uppercase font-sans text-slate-400 dark:text-slate-500">Embedding Engine</span>
+                <span className="font-semibold text-slate-700 dark:text-slate-300">MiniLM-L6</span>
               </div>
             </div>
           </div>
@@ -255,12 +255,12 @@ export default function Home() {
 
         {/* Listings Section */}
         <section id="browse" className="scroll-mt-20 space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 dark:border-[#30363d] pb-3">
             <div className="flex items-baseline gap-2">
-              <h2 className="text-base font-bold text-slate-900">
+              <h2 className="text-base font-bold text-slate-900 dark:text-white">
                 {activeMode === "semantic" ? "Semantic Vector Matches" : "Active Market Inventory"}
               </h2>
-              <span className="text-xs text-slate-500 font-mono tabular-nums">
+              <span className="text-xs text-slate-500 dark:text-[#a1a8b0] font-mono tabular-nums">
                 ({activeMode === "semantic" ? searchResults.length : properties.length} properties)
               </span>
             </div>
@@ -269,7 +269,7 @@ export default function Home() {
               <button
                 type="button"
                 onClick={() => handleToggleMode(false)}
-                className="text-xs font-medium text-slate-600 hover:text-slate-900 underline self-start sm:self-auto"
+                className="text-xs font-medium text-slate-600 dark:text-[#a1a8b0] hover:text-slate-900 dark:hover:text-white underline self-start sm:self-auto transition-colors"
               >
                 Return to standard listings view
               </button>
@@ -282,14 +282,14 @@ export default function Home() {
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div
                   key={i}
-                  className="overflow-hidden rounded-lg border border-slate-200 bg-white"
+                  className="overflow-hidden rounded-lg border border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#191c1f]"
                 >
-                  <div className="aspect-[16/10] w-full animate-pulse bg-slate-200" />
+                  <div className="aspect-[16/10] w-full animate-pulse bg-slate-200 dark:bg-[#202428]" />
                   <div className="p-4 space-y-3">
-                    <div className="h-5 w-24 animate-pulse rounded bg-slate-200" />
-                    <div className="h-4 w-3/4 animate-pulse rounded bg-slate-200" />
-                    <div className="h-3 w-1/2 animate-pulse rounded bg-slate-100" />
-                    <div className="h-6 w-full animate-pulse rounded bg-slate-100 pt-2" />
+                    <div className="h-5 w-24 animate-pulse rounded bg-slate-200 dark:bg-[#202428]" />
+                    <div className="h-4 w-3/4 animate-pulse rounded bg-slate-200 dark:bg-[#202428]" />
+                    <div className="h-3 w-1/2 animate-pulse rounded bg-slate-100 dark:bg-[#272c33]" />
+                    <div className="h-6 w-full animate-pulse rounded bg-slate-100 dark:bg-[#272c33] pt-2" />
                   </div>
                 </div>
               ))}
@@ -312,16 +312,16 @@ export default function Home() {
                     ))}
                   </div>
                 ) : (
-                  <div className="rounded-lg border border-slate-200 bg-white p-12 text-center">
-                    <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 mb-3">
+                  <div className="rounded-lg border border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#191c1f] p-12 text-center">
+                    <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-[#202428] text-slate-600 dark:text-slate-300 mb-3">
                       <IconSparkles className="h-5 w-5" />
                     </div>
-                    <h3 className="text-sm font-semibold text-slate-900">
+                    <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
                       {searchQuery.trim()
                         ? "No semantic matches found for this query"
                         : "Enter a prompt to run vector similarity search"}
                     </h3>
-                    <p className="mt-1 text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
+                    <p className="mt-1 text-xs text-slate-500 dark:text-[#a1a8b0] max-w-md mx-auto leading-relaxed">
                       {searchQuery.trim()
                         ? "Try rephrasing your search or widening numeric filter constraints."
                         : "Describe property features, location preferences, or design attributes in plain English."}
@@ -339,16 +339,16 @@ export default function Home() {
                   ))}
                 </div>
               ) : (
-                <div className="rounded-lg border border-slate-200 bg-white p-12 text-center">
-                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 mb-3">
+                <div className="rounded-lg border border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#191c1f] p-12 text-center">
+                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 dark:bg-[#202428] text-slate-600 dark:text-slate-300 mb-3">
                     <IconBuilding className="h-5 w-5" />
                   </div>
-                  <h3 className="text-sm font-semibold text-slate-900">
+                  <h3 className="text-sm font-semibold text-slate-900 dark:text-white">
                     {isDbConnected === false
                       ? "Database Offline"
                       : "No properties match the selected criteria"}
                   </h3>
-                  <p className="mt-1 text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
+                  <p className="mt-1 text-xs text-slate-500 dark:text-[#a1a8b0] max-w-md mx-auto leading-relaxed">
                     {isDbConnected === false
                       ? "A valid PostgreSQL connection string is required in DATABASE_URL."
                       : "Try clearing specific filters, widening the price range, or selecting all cities."}
@@ -357,7 +357,7 @@ export default function Home() {
                     <button
                       type="button"
                       onClick={handleResetFilters}
-                      className="mt-4 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
+                      className="mt-4 rounded-md border border-slate-300 dark:border-[#30363d] bg-white dark:bg-[#202428] px-3 py-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-[#272c33] transition-colors"
                     >
                       Reset All Filters
                     </button>
