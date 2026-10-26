@@ -1,0 +1,2837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>PropAudit - 100 Property Image Contact Sheet</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #0f1117; color: #e2e8f0; padding: 24px; }
+    h1 { font-size: 24px; margin-bottom: 8px; color: #fff; }
+    p.subtitle { font-size: 14px; color: #94a3b8; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .card { background: #1e222d; border: 1px solid #334155; border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
+    .header { padding: 8px 12px; display: flex; align-items: center; justify-between: space-between; gap: 8px; font-size: 11px; background: #181b24; border-bottom: 1px solid #334155; }
+    .id { font-family: monospace; font-weight: bold; color: #38bdf8; }
+    .type { padding: 2px 6px; border-radius: 4px; font-weight: bold; font-size: 10px; }
+    .type.apartment { background: #0284c7; color: #fff; }
+    .type.villa { background: #059669; color: #fff; }
+    .type.house { background: #d97706; color: #fff; }
+    .city { margin-left: auto; color: #94a3b8; }
+    .img-wrap { width: 100%; height: 180px; position: relative; background: #000; overflow: hidden; }
+    .img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+    .info { padding: 12px; flex: 1; }
+    .info h4 { font-size: 13px; font-weight: 600; color: #f8fafc; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .price { font-size: 11px; color: #cbd5e1; margin-bottom: 6px; }
+    .photo-id { font-size: 10px; color: #64748b; font-family: monospace; }
+    .gallery-strip { display: flex; gap: 4px; padding: 8px 12px; background: #151820; border-top: 1px solid #28303f; }
+    .gallery-strip img { width: 50px; height: 35px; object-fit: cover; border-radius: 2px; opacity: 0.7; }
+    .gallery-strip img.active { border: 2px solid #38bdf8; opacity: 1; }
+  </style>
+</head>
+<body>
+  <h1>PropAudit 100 Property Primary Image & Gallery Contact Sheet</h1>
+  <p class="subtitle">Complete visual verification matrix for properties 1–100 across architectural types (Apartment, Villa, House).</p>
+  <div class="grid">
+    
+      <div class="card" id="prop-1">
+        <div class="header">
+          <span class="id">ID #1</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80" alt="1 BHK apartment in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK apartment in Bangalore</h4>
+          <p class="price">₹74,00,250 • 1 Beds • 1 Baths • 650 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1545324418-cc1a3fa10c00</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-2">
+        <div class="header">
+          <span class="id">ID #2</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80" alt="2 BHK villa in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK villa in Chennai</h4>
+          <p class="price">₹66,89,500 • 2 Beds • 2 Baths • 787 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1613490493576-7fde63acd811</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-3">
+        <div class="header">
+          <span class="id">ID #3</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1200&q=80" alt="3 BHK house in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK house in Hyderabad</h4>
+          <p class="price">₹73,92,000 • 3 Beds • 3 Baths • 924 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1618219908412-a29a1bb7b86e</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-4">
+        <div class="header">
+          <span class="id">ID #4</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" alt="4 BHK apartment in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK apartment in Mumbai</h4>
+          <p class="price">₹2,12,20,000 • 4 Beds • 4 Baths • 1061 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1502672260266-1c1ef2d93688</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-5">
+        <div class="header">
+          <span class="id">ID #5</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80" alt="1 BHK villa in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK villa in Pune</h4>
+          <p class="price">₹1,07,82,000 • 1 Beds • 1 Baths • 1198 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1580587771525-78b9dba3b914</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-6">
+        <div class="header">
+          <span class="id">ID #6</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?auto=format&fit=crop&w=1200&q=80" alt="2 BHK house in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK house in Bangalore</h4>
+          <p class="price">₹1,60,20,000 • 2 Beds • 2 Baths • 1335 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1613977257592-4871e5fcd7c4</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1613977257592-4871e5fcd7c4?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-7">
+        <div class="header">
+          <span class="id">ID #7</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" alt="3 BHK apartment in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK apartment in Chennai</h4>
+          <p class="price">₹1,32,48,000 • 3 Beds • 3 Baths • 1472 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1560448204-e02f11c3d0e2</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-8">
+        <div class="header">
+          <span class="id">ID #8</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80" alt="4 BHK villa in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK villa in Hyderabad</h4>
+          <p class="price">₹1,36,76,500 • 4 Beds • 4 Baths • 1609 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1512915922686-57c11dde9b6b</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1512915922686-57c11dde9b6b?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-9">
+        <div class="header">
+          <span class="id">ID #9</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?auto=format&fit=crop&w=1200&q=80" alt="1 BHK house in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK house in Mumbai</h4>
+          <p class="price">₹3,23,01,000 • 1 Beds • 1 Baths • 1746 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600573472592-401b489a3cdc</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600573472592-401b489a3cdc?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-10">
+        <div class="header">
+          <span class="id">ID #10</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" alt="2 BHK apartment in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK apartment in Pune</h4>
+          <p class="price">₹1,78,88,500 • 2 Beds • 2 Baths • 1883 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1522708323590-d24dbb6b0267</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505773278895-5efa7b11679a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-11">
+        <div class="header">
+          <span class="id">ID #11</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" alt="3 BHK villa in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK villa in Bangalore</h4>
+          <p class="price">₹2,52,50,000 • 3 Beds • 3 Baths • 2020 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1560448204-603b3fc33ddc</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-12">
+        <div class="header">
+          <span class="id">ID #12</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80" alt="4 BHK house in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK house in Chennai</h4>
+          <p class="price">₹2,04,91,500 • 4 Beds • 4 Baths • 2157 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1568605114967-8130f3a36994</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-13">
+        <div class="header">
+          <span class="id">ID #13</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1200&q=80" alt="1 BHK apartment in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK apartment in Hyderabad</h4>
+          <p class="price">₹1,60,58,000 • 1 Beds • 1 Baths • 2294 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1567496898669-ee935f5f647a</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-14">
+        <div class="header">
+          <span class="id">ID #14</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1529408686214-b48b8532f72c?auto=format&fit=crop&w=1200&q=80" alt="2 BHK villa in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK villa in Mumbai</h4>
+          <p class="price">₹4,61,89,000 • 2 Beds • 2 Baths • 2431 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1529408686214-b48b8532f72c</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1529408686214-b48b8532f72c?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-15">
+        <div class="header">
+          <span class="id">ID #15</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1638799869566-b17fa794c4de?auto=format&fit=crop&w=1200&q=80" alt="3 BHK house in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK house in Pune</h4>
+          <p class="price">₹76,80,000 • 3 Beds • 3 Baths • 768 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1638799869566-b17fa794c4de</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1638799869566-b17fa794c4de?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-16">
+        <div class="header">
+          <span class="id">ID #16</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" alt="4 BHK apartment in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK apartment in Bangalore</h4>
+          <p class="price">₹1,17,65,000 • 4 Beds • 4 Baths • 905 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1512918728675-ed5a9ecdebfd</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-17">
+        <div class="header">
+          <span class="id">ID #17</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1200&q=80" alt="1 BHK villa in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK villa in Chennai</h4>
+          <p class="price">₹83,36,000 • 1 Beds • 1 Baths • 1042 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1502672023488-70e25813eb80</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-18">
+        <div class="header">
+          <span class="id">ID #18</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1560185009-dddeb820c7b7?auto=format&fit=crop&w=1200&q=80" alt="2 BHK house in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK house in Hyderabad</h4>
+          <p class="price">₹88,42,500 • 2 Beds • 2 Baths • 1179 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1560185009-dddeb820c7b7</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1560185009-dddeb820c7b7?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-19">
+        <div class="header">
+          <span class="id">ID #19</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80" alt="3 BHK apartment in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK apartment in Mumbai</h4>
+          <p class="price">₹2,56,62,000 • 3 Beds • 3 Baths • 1316 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1493809842364-78817add7ffb</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-20">
+        <div class="header">
+          <span class="id">ID #20</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1200&q=80" alt="4 BHK villa in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK villa in Pune</h4>
+          <p class="price">₹1,52,56,500 • 4 Beds • 4 Baths • 1453 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1519643381401-22c77e60520e</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1519643381401-22c77e60520e?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505773278895-5efa7b11679a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-21">
+        <div class="header">
+          <span class="id">ID #21</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1641910532059-ad684fd3049c?auto=format&fit=crop&w=1200&q=80" alt="1 BHK house in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK house in Bangalore</h4>
+          <p class="price">₹3,29,13,000 • 1 Beds • 1 Baths • 1590 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1641910532059-ad684fd3049c</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1641910532059-ad684fd3049c?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-22">
+        <div class="header">
+          <span class="id">ID #22</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" alt="2 BHK apartment in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK apartment in Chennai</h4>
+          <p class="price">₹1,46,79,500 • 2 Beds • 2 Baths • 1727 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1484154218962-a197022b5858</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-23">
+        <div class="header">
+          <span class="id">ID #23</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80" alt="3 BHK villa in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK villa in Hyderabad</h4>
+          <p class="price">₹1,49,12,000 • 3 Beds • 3 Baths • 1864 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1613977257363-707ba9348227</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-24">
+        <div class="header">
+          <span class="id">ID #24</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80" alt="4 BHK house in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK house in Mumbai</h4>
+          <p class="price">₹4,00,20,000 • 4 Beds • 4 Baths • 2001 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1584622650111-993a426fbf0a</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-25">
+        <div class="header">
+          <span class="id">ID #25</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" alt="1 BHK apartment in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK apartment in Pune</h4>
+          <p class="price">₹1,92,42,000 • 1 Beds • 1 Baths • 2138 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1507089947368-19c1da9775ae</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-26">
+        <div class="header">
+          <span class="id">ID #26</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80" alt="2 BHK villa in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK villa in Bangalore</h4>
+          <p class="price">₹2,73,00,000 • 2 Beds • 2 Baths • 2275 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1577495508048-b635879837f1</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-27">
+        <div class="header">
+          <span class="id">ID #27</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=1200&q=80" alt="3 BHK house in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK house in Chennai</h4>
+          <p class="price">₹2,17,08,000 • 3 Beds • 3 Baths • 2412 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1516455590571-18256e5bb9ff</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1516455590571-18256e5bb9ff?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-28">
+        <div class="header">
+          <span class="id">ID #28</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" alt="4 BHK apartment in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK apartment in Hyderabad</h4>
+          <p class="price">₹63,66,500 • 4 Beds • 4 Baths • 749 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1505691938895-1758d7feb511</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-29">
+        <div class="header">
+          <span class="id">ID #29</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" alt="1 BHK villa in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK villa in Mumbai</h4>
+          <p class="price">₹1,63,91,000 • 1 Beds • 1 Baths • 886 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1512917774080-9991f1c4c750</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-30">
+        <div class="header">
+          <span class="id">ID #30</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80" alt="2 BHK house in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK house in Pune</h4>
+          <p class="price">₹97,18,500 • 2 Beds • 2 Baths • 1023 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1570129477492-45c003edd2be</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505773278895-5efa7b11679a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-31">
+        <div class="header">
+          <span class="id">ID #31</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" alt="3 BHK apartment in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK apartment in Bangalore</h4>
+          <p class="price">₹1,45,00,000 • 3 Beds • 3 Baths • 1160 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1513694203232-719a280e022f</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-32">
+        <div class="header">
+          <span class="id">ID #32</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="4 BHK villa in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK villa in Chennai</h4>
+          <p class="price">₹1,23,21,500 • 4 Beds • 4 Baths • 1297 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600585154340-be6161a56a0c</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-33">
+        <div class="header">
+          <span class="id">ID #33</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=1200&q=80" alt="1 BHK house in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK house in Hyderabad</h4>
+          <p class="price">₹1,00,38,000 • 1 Beds • 1 Baths • 1434 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1572120360610-d971b9d7767c</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-34">
+        <div class="header">
+          <span class="id">ID #34</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80" alt="2 BHK apartment in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK apartment in Mumbai</h4>
+          <p class="price">₹1,64,16,950 • 2 Beds • 2 Baths • 1571 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1524758631624-e2822e304c36</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-35">
+        <div class="header">
+          <span class="id">ID #35</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80" alt="3 BHK villa in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK villa in Pune</h4>
+          <p class="price">₹1,70,80,000 • 3 Beds • 3 Baths • 1708 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600596542815-ffad4c1539a9</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-36">
+        <div class="header">
+          <span class="id">ID #36</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80" alt="4 BHK house in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK house in Bangalore</h4>
+          <p class="price">₹2,39,85,000 • 4 Beds • 4 Baths • 1845 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1568605117036-5fe5e7bab0b7</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-37">
+        <div class="header">
+          <span class="id">ID #37</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=1200&q=80" alt="1 BHK apartment in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK apartment in Chennai</h4>
+          <p class="price">₹1,58,56,000 • 1 Beds • 1 Baths • 1982 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1515263487990-61b07816b324</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1515263487990-61b07816b324?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-38">
+        <div class="header">
+          <span class="id">ID #38</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="2 BHK villa in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK villa in Hyderabad</h4>
+          <p class="price">₹1,58,92,500 • 2 Beds • 2 Baths • 2119 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600607687939-ce8a6c25118c</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-39">
+        <div class="header">
+          <span class="id">ID #39</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80" alt="3 BHK house in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK house in Mumbai</h4>
+          <p class="price">₹4,39,92,000 • 3 Beds • 3 Baths • 2256 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1564013799919-ab600027ffc6</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-40">
+        <div class="header">
+          <span class="id">ID #40</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&w=1200&q=80" alt="4 BHK apartment in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK apartment in Pune</h4>
+          <p class="price">₹2,51,26,500 • 4 Beds • 4 Baths • 2393 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1536376072261-38c75010e6c9</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505773278895-5efa7b11679a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-41">
+        <div class="header">
+          <span class="id">ID #41</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80" alt="1 BHK villa in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK villa in Bangalore</h4>
+          <p class="price">₹1,51,11,000 • 1 Beds • 1 Baths • 730 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600566753376-12c8ab7fb75b</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-42">
+        <div class="header">
+          <span class="id">ID #42</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80" alt="2 BHK house in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK house in Chennai</h4>
+          <p class="price">₹73,69,500 • 2 Beds • 2 Baths • 867 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1576941089067-2de3c901e126</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-43">
+        <div class="header">
+          <span class="id">ID #43</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1200&q=80" alt="3 BHK apartment in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK apartment in Hyderabad</h4>
+          <p class="price">₹80,32,000 • 3 Beds • 3 Baths • 1004 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1554995207-c18c203602cb</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-44">
+        <div class="header">
+          <span class="id">ID #44</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=1200&q=80" alt="4 BHK villa in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK villa in Mumbai</h4>
+          <p class="price">₹2,28,20,000 • 4 Beds • 4 Baths • 1141 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600573472550-8090b5e0745e</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600573472550-8090b5e0745e?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-45">
+        <div class="header">
+          <span class="id">ID #45</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=1200&q=80" alt="1 BHK house in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK house in Pune</h4>
+          <p class="price">₹1,15,02,000 • 1 Beds • 1 Baths • 1278 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1583608205776-bfd35f0d9f83</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-46">
+        <div class="header">
+          <span class="id">ID #46</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=1200&q=80" alt="2 BHK apartment in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK apartment in Bangalore</h4>
+          <p class="price">₹1,69,80,000 • 2 Beds • 2 Baths • 1415 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1560185007-cde436f6a4d0</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-47">
+        <div class="header">
+          <span class="id">ID #47</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1200&q=80" alt="3 BHK villa in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK villa in Chennai</h4>
+          <p class="price">₹1,39,68,000 • 3 Beds • 3 Baths • 1552 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1576013551627-0cc20b96c2a7</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-48">
+        <div class="header">
+          <span class="id">ID #48</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1598228723793-52759bba239c?auto=format&fit=crop&w=1200&q=80" alt="4 BHK house in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK house in Hyderabad</h4>
+          <p class="price">₹1,43,56,500 • 4 Beds • 4 Baths • 1689 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1598228723793-52759bba239c</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1598228723793-52759bba239c?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-49">
+        <div class="header">
+          <span class="id">ID #49</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=1200&q=80" alt="1 BHK apartment in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK apartment in Mumbai</h4>
+          <p class="price">₹3,37,81,000 • 1 Beds • 1 Baths • 1826 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1560185008-b033106af5c3</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-50">
+        <div class="header">
+          <span class="id">ID #50</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1571055107559-3e67626fa8be?auto=format&fit=crop&w=1200&q=80" alt="2 BHK villa in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK villa in Pune</h4>
+          <p class="price">₹1,86,48,500 • 2 Beds • 2 Baths • 1963 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1571055107559-3e67626fa8be</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1571055107559-3e67626fa8be?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505773278895-5efa7b11679a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-51">
+        <div class="header">
+          <span class="id">ID #51</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=1200&q=80" alt="3 BHK house in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK house in Bangalore</h4>
+          <p class="price">₹2,62,50,000 • 3 Beds • 3 Baths • 2100 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1605146769289-440113cc3d00</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-52">
+        <div class="header">
+          <span class="id">ID #52</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" alt="4 BHK apartment in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK apartment in Chennai</h4>
+          <p class="price">₹2,12,51,500 • 4 Beds • 4 Baths • 2237 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1560185127-6ed189bf02f4</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-53">
+        <div class="header">
+          <span class="id">ID #53</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80" alt="1 BHK villa in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK villa in Hyderabad</h4>
+          <p class="price">₹1,66,18,000 • 1 Beds • 1 Baths • 2374 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1571896349842-33c89424de2d</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-54">
+        <div class="header">
+          <span class="id">ID #54</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?auto=format&fit=crop&w=1200&q=80" alt="2 BHK house in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK house in Mumbai</h4>
+          <p class="price">₹1,35,09,000 • 2 Beds • 2 Baths • 711 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1588880331179-bc9b93a8cb5e</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-55">
+        <div class="header">
+          <span class="id">ID #55</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1560448075-bb485b067938?auto=format&fit=crop&w=1200&q=80" alt="3 BHK apartment in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK apartment in Pune</h4>
+          <p class="price">₹84,80,000 • 3 Beds • 3 Baths • 848 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1560448075-bb485b067938</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1560448075-bb485b067938?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-56">
+        <div class="header">
+          <span class="id">ID #56</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" alt="4 BHK villa in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK villa in Bangalore</h4>
+          <p class="price">₹1,28,05,000 • 4 Beds • 4 Baths • 985 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1582719478250-c89cae4dc85b</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-57">
+        <div class="header">
+          <span class="id">ID #57</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=1200&q=80" alt="1 BHK house in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK house in Chennai</h4>
+          <p class="price">₹89,76,000 • 1 Beds • 1 Baths • 1122 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1593696140826-c58b021acf8b</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1593696140826-c58b021acf8b?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-58">
+        <div class="header">
+          <span class="id">ID #58</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1565182999561-18d7dc61c393?auto=format&fit=crop&w=1200&q=80" alt="2 BHK apartment in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK apartment in Hyderabad</h4>
+          <p class="price">₹94,42,500 • 2 Beds • 2 Baths • 1259 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1565182999561-18d7dc61c393</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1565182999561-18d7dc61c393?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-59">
+        <div class="header">
+          <span class="id">ID #59</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1584738766473-61c083514bf4?auto=format&fit=crop&w=1200&q=80" alt="3 BHK villa in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK villa in Mumbai</h4>
+          <p class="price">₹2,72,22,000 • 3 Beds • 3 Baths • 1396 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1584738766473-61c083514bf4</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1584738766473-61c083514bf4?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-60">
+        <div class="header">
+          <span class="id">ID #60</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?auto=format&fit=crop&w=1200&q=80" alt="4 BHK house in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK house in Pune</h4>
+          <p class="price">₹1,60,96,500 • 4 Beds • 4 Baths • 1533 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1591474200742-8e512e6f98f8</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1591474200742-8e512e6f98f8?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505773278895-5efa7b11679a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-61">
+        <div class="header">
+          <span class="id">ID #61</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1200&q=80" alt="1 BHK apartment in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK apartment in Bangalore</h4>
+          <p class="price">₹3,45,69,000 • 1 Beds • 1 Baths • 1670 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1574362848149-11496d93a7c7</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-62">
+        <div class="header">
+          <span class="id">ID #62</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80" alt="2 BHK villa in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK villa in Chennai</h4>
+          <p class="price">₹1,53,59,500 • 2 Beds • 2 Baths • 1807 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1590490360182-c33d57733427</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-63">
+        <div class="header">
+          <span class="id">ID #63</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?auto=format&fit=crop&w=1200&q=80" alt="3 BHK house in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK house in Hyderabad</h4>
+          <p class="price">₹1,55,52,000 • 3 Beds • 3 Baths • 1944 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1513584684374-8bab748fbf90</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-64">
+        <div class="header">
+          <span class="id">ID #64</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80" alt="4 BHK apartment in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK apartment in Mumbai</h4>
+          <p class="price">₹4,16,20,000 • 4 Beds • 4 Baths • 2081 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1582268611958-ebfd161ef9cf</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1582268611958-ebfd161ef9cf?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-65">
+        <div class="header">
+          <span class="id">ID #65</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=1200&q=80" alt="1 BHK villa in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK villa in Pune</h4>
+          <p class="price">₹1,99,62,000 • 1 Beds • 1 Baths • 2218 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1592595896551-12b371d546d5</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1592595896551-12b371d546d5?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-66">
+        <div class="header">
+          <span class="id">ID #66</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1200&q=80" alt="2 BHK house in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK house in Bangalore</h4>
+          <p class="price">₹2,82,60,000 • 2 Beds • 2 Baths • 2355 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1523217582562-09d0def993a6</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-67">
+        <div class="header">
+          <span class="id">ID #67</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1594484208280-efa00f96fc21?auto=format&fit=crop&w=1200&q=80" alt="3 BHK apartment in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK apartment in Chennai</h4>
+          <p class="price">₹34,25,400 • 3 Beds • 3 Baths • 692 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1594484208280-efa00f96fc21</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1594484208280-efa00f96fc21?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-68">
+        <div class="header">
+          <span class="id">ID #68</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&w=1200&q=80" alt="4 BHK villa in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK villa in Hyderabad</h4>
+          <p class="price">₹70,46,500 • 4 Beds • 4 Baths • 829 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1599809275671-b5942cabc7a2</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1599809275671-b5942cabc7a2?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-69">
+        <div class="header">
+          <span class="id">ID #69</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80" alt="1 BHK house in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK house in Mumbai</h4>
+          <p class="price">₹1,78,71,000 • 1 Beds • 1 Baths • 966 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1542314831-068cd1dbfeeb</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-70">
+        <div class="header">
+          <span class="id">ID #70</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" alt="2 BHK apartment in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK apartment in Pune</h4>
+          <p class="price">₹1,04,78,500 • 2 Beds • 2 Baths • 1103 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1598928506311-c55ded91a20c</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505773278895-5efa7b11679a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-71">
+        <div class="header">
+          <span class="id">ID #71</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80" alt="3 BHK villa in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK villa in Bangalore</h4>
+          <p class="price">₹1,55,00,000 • 3 Beds • 3 Baths • 1240 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600047509807-ba8f99d2cdde</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-72">
+        <div class="header">
+          <span class="id">ID #72</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1575517111478-7f6afd0973db?auto=format&fit=crop&w=1200&q=80" alt="4 BHK house in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK house in Chennai</h4>
+          <p class="price">₹1,30,81,500 • 4 Beds • 4 Baths • 1377 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1575517111478-7f6afd0973db</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1575517111478-7f6afd0973db?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-73">
+        <div class="header">
+          <span class="id">ID #73</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" alt="1 BHK apartment in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK apartment in Hyderabad</h4>
+          <p class="price">₹1,05,98,000 • 1 Beds • 1 Baths • 1514 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600210492486-724fe5c67fb0</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-74">
+        <div class="header">
+          <span class="id">ID #74</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80" alt="2 BHK villa in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK villa in Mumbai</h4>
+          <p class="price">₹3,13,69,000 • 2 Beds • 2 Baths • 1651 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600566753190-17f0baa2a6c3</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-75">
+        <div class="header">
+          <span class="id">ID #75</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80" alt="3 BHK house in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK house in Pune</h4>
+          <p class="price">₹1,78,80,000 • 3 Beds • 3 Baths • 1788 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1586023492125-27b2c045efd7</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-76">
+        <div class="header">
+          <span class="id">ID #76</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80" alt="4 BHK apartment in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK apartment in Bangalore</h4>
+          <p class="price">₹2,50,25,000 • 4 Beds • 4 Baths • 1925 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1494526585095-c41746248156</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-77">
+        <div class="header">
+          <span class="id">ID #77</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=80" alt="1 BHK villa in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK villa in Chennai</h4>
+          <p class="price">₹1,64,96,000 • 1 Beds • 1 Baths • 2062 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600607688969-a5bfcd646154</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-78">
+        <div class="header">
+          <span class="id">ID #78</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1200&q=80" alt="2 BHK house in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK house in Hyderabad</h4>
+          <p class="price">₹1,64,92,500 • 2 Beds • 2 Baths • 2199 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1493663284031-b7e3aefcae8e</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-79">
+        <div class="header">
+          <span class="id">ID #79</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" alt="3 BHK apartment in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK apartment in Mumbai</h4>
+          <p class="price">₹4,55,52,000 • 3 Beds • 3 Baths • 2336 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600585154526-990dced4db0d</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-80">
+        <div class="header">
+          <span class="id">ID #80</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80" alt="4 BHK villa in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK villa in Pune</h4>
+          <p class="price">₹70,66,500 • 4 Beds • 4 Baths • 673 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600566752355-35792bedcfea</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505773278895-5efa7b11679a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-81">
+        <div class="header">
+          <span class="id">ID #81</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=1200&q=80" alt="1 BHK house in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK house in Bangalore</h4>
+          <p class="price">₹1,67,67,000 • 1 Beds • 1 Baths • 810 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1484101403633-562f891dc89a</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-82">
+        <div class="header">
+          <span class="id">ID #82</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80" alt="2 BHK apartment in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK apartment in Chennai</h4>
+          <p class="price">₹80,49,500 • 2 Beds • 2 Baths • 947 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600607687920-4e2a09cf159d</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-83">
+        <div class="header">
+          <span class="id">ID #83</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1200&q=80" alt="3 BHK villa in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK villa in Hyderabad</h4>
+          <p class="price">₹86,72,000 • 3 Beds • 3 Baths • 1084 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600585154363-67eb9e2e2099</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-84">
+        <div class="header">
+          <span class="id">ID #84</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" alt="4 BHK house in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK house in Mumbai</h4>
+          <p class="price">₹2,44,20,000 • 4 Beds • 4 Baths • 1221 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1556912167-f556f1f39fdf</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-85">
+        <div class="header">
+          <span class="id">ID #85</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" alt="1 BHK apartment in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK apartment in Pune</h4>
+          <p class="price">₹1,22,22,000 • 1 Beds • 1 Baths • 1358 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600573472591-ee6b68d14c68</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-86">
+        <div class="header">
+          <span class="id">ID #86</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" alt="2 BHK villa in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK villa in Bangalore</h4>
+          <p class="price">₹1,79,40,000 • 2 Beds • 2 Baths • 1495 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600566753086-00f18fb6b3ea</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-87">
+        <div class="header">
+          <span class="id">ID #87</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" alt="3 BHK house in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK house in Chennai</h4>
+          <p class="price">₹1,46,88,000 • 3 Beds • 3 Baths • 1632 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1556912172-45b7abe8b7e1</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-88">
+        <div class="header">
+          <span class="id">ID #88</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" alt="4 BHK apartment in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK apartment in Hyderabad</h4>
+          <p class="price">₹1,50,36,500 • 4 Beds • 4 Baths • 1769 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1600585152220-90363fe7e115</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-89">
+        <div class="header">
+          <span class="id">ID #89</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1200&q=80" alt="1 BHK villa in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK villa in Mumbai</h4>
+          <p class="price">₹3,52,61,000 • 1 Beds • 1 Baths • 1906 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1605276374104-dee2a0ed3cd6</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-90">
+        <div class="header">
+          <span class="id">ID #90</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" alt="2 BHK house in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK house in Pune</h4>
+          <p class="price">₹1,94,08,500 • 2 Beds • 2 Baths • 2043 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1556912173-3bb406ef7e77</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505773278895-5efa7b11679a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-91">
+        <div class="header">
+          <span class="id">ID #91</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" alt="3 BHK apartment in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK apartment in Bangalore</h4>
+          <p class="price">₹2,72,50,000 • 3 Beds • 3 Baths • 2180 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1505691723518-36a5ac3be353</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912173-3bb406ef7e77?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-92">
+        <div class="header">
+          <span class="id">ID #92</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1200&q=80" alt="4 BHK villa in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK villa in Chennai</h4>
+          <p class="price">₹2,20,11,500 • 4 Beds • 4 Baths • 2317 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1501183638710-841dd1904471</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1501183638710-841dd1904471?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-93">
+        <div class="header">
+          <span class="id">ID #93</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" alt="1 BHK house in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK house in Hyderabad</h4>
+          <p class="price">₹45,78,000 • 1 Beds • 1 Baths • 654 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1563298723-dcfebaa392e3</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1563298723-dcfebaa392e3?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-94">
+        <div class="header">
+          <span class="id">ID #94</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" alt="2 BHK apartment in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK apartment in Mumbai</h4>
+          <p class="price">₹1,50,29,000 • 2 Beds • 2 Baths • 791 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1522771739844-6a9f6d5f14af</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-95">
+        <div class="header">
+          <span class="id">ID #95</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" alt="3 BHK villa in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK villa in Pune</h4>
+          <p class="price">₹92,80,000 • 3 Beds • 3 Baths • 928 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1615874959474-d609969a20ed</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560448204-603b3fc33ddc?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1588854337236-6889d631faa8?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-96">
+        <div class="header">
+          <span class="id">ID #96</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Bangalore</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" alt="4 BHK house in Bangalore" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK house in Bangalore</h4>
+          <p class="price">₹1,38,45,000 • 4 Beds • 4 Baths • 1065 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1556911220-bff31c812dba</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-97">
+        <div class="header">
+          <span class="id">ID #97</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Chennai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" alt="1 BHK apartment in Chennai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>1 BHK apartment in Chennai</h4>
+          <p class="price">₹96,16,000 • 1 Beds • 1 Baths • 1202 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1566665797739-1674de7a421a</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1566665797739-1674de7a421a?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600573472591-ee6b68d14c68?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-98">
+        <div class="header">
+          <span class="id">ID #98</span>
+          <span class="type villa">VILLA</span>
+          <span class="city">Hyderabad</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80" alt="2 BHK villa in Hyderabad" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>2 BHK villa in Hyderabad</h4>
+          <p class="price">₹1,00,42,500 • 2 Beds • 2 Baths • 1339 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1618221195710-dd6b41faaea6</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-99">
+        <div class="header">
+          <span class="id">ID #99</span>
+          <span class="type house">HOUSE</span>
+          <span class="city">Mumbai</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" alt="3 BHK house in Mumbai" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>3 BHK house in Mumbai</h4>
+          <p class="price">₹2,87,82,000 • 3 Beds • 3 Baths • 1476 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1588854337221-4cf9fa96059c</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1588854337221-4cf9fa96059c?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912167-f556f1f39fdf?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+
+      <div class="card" id="prop-100">
+        <div class="header">
+          <span class="id">ID #100</span>
+          <span class="type apartment">APARTMENT</span>
+          <span class="city">Pune</span>
+        </div>
+        <div class="img-wrap">
+          <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" alt="4 BHK apartment in Pune" loading="lazy" />
+        </div>
+        <div class="info">
+          <h4>4 BHK apartment in Pune</h4>
+          <p class="price">₹93,15,075 • 4 Beds • 4 Baths • 1613 sqft</p>
+          <p class="photo-id">Unsplash ID: <code>1571508601891-ca5e7a713859</code></p>
+        </div>
+        <div class="gallery-strip">
+          
+            <img src="https://images.unsplash.com/photo-1571508601891-ca5e7a713859?auto=format&fit=crop&w=1200&q=80" class="active" title="Gallery 0" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 1" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1556912172-45b7abe8b7e1?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 2" loading="lazy" />
+          
+            <img src="https://images.unsplash.com/photo-1505773278895-5efa7b11679a?auto=format&fit=crop&w=1200&q=80" class="" title="Gallery 3" loading="lazy" />
+          
+        </div>
+      </div>
+    
+  </div>
+</body>
+</html>

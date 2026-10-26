@@ -42,3 +42,6 @@ next-env.d.ts
 
 /app/generated/prisma
 .aicp
+qa-output/
+.credentials*
+credentials-delivery*

@@ -64,16 +64,38 @@ test("Password hashing and bcrypt verification", async () => {
   assert.equal(isEmpty, false);
 });
 
-test("Backward compatibility with demo seed hashes", async () => {
-  // Admin demo seed
-  assert.equal(await verifyPassword("admin_demo_hash", "admin_demo_hash"), true);
-  assert.equal(await verifyPassword("admin123", "admin_demo_hash"), true);
-  assert.equal(await verifyPassword("wrong", "admin_demo_hash"), false);
+test("Strict rejection of legacy demo placeholder hashes and non-bcrypt strings", async () => {
+  // Demo placeholder strings must NEVER match, even if provided as the password itself
+  assert.equal(await verifyPassword("admin123", "admin_demo_hash"), false);
+  assert.equal(await verifyPassword("admin", "admin_demo_hash"), false);
+  assert.equal(await verifyPassword("admin_demo_hash", "admin_demo_hash"), false);
+  assert.equal(await verifyPassword("password123", "demo_hash_123"), false);
+  assert.equal(await verifyPassword("demo_hash_123", "demo_hash_123"), false);
 
-  // User demo seed
-  assert.equal(await verifyPassword("demo_hash_123", "demo_hash_123"), true);
-  assert.equal(await verifyPassword("password123", "demo_hash_123"), true);
-  assert.equal(await verifyPassword("wrong", "demo_hash_123"), false);
+  // Empty values
+  assert.equal(await verifyPassword("", "admin_demo_hash"), false);
+  assert.equal(await verifyPassword("admin123", ""), false);
+  assert.equal(await verifyPassword("", ""), false);
+
+  // Arbitrary non-bcrypt strings must fail closed
+  assert.equal(await verifyPassword("secret", "plain_text_password"), false);
+  assert.equal(await verifyPassword("secret", "md5:5f4dcc3b5aa765d61d8327deb882cf99"), false);
+  assert.equal(await verifyPassword("secret", "sha256:2c26b46b68ffc68ff99b453c1d30413413422d706483bfa0f98a5e886266e7ae"), false);
+
+  // Unsupported salt revisions/prefixes ($2x, $2y, $2c, $1, $5, $6) must be strictly rejected
+  assert.equal(await verifyPassword("secret", "$2x$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy"), false);
+  assert.equal(await verifyPassword("secret", "$2y$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy"), false);
+  assert.equal(await verifyPassword("secret", "$2c$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy"), false);
+  assert.equal(await verifyPassword("secret", "$1$salt$N9qo8uLOickgx2ZMRZoMye"), false);
+  assert.equal(await verifyPassword("secret", "$5$rounds=5000$saltsalt$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68L"), false);
+  assert.equal(await verifyPassword("secret", "$6$rounds=5000$saltsalt$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68L"), false);
+
+  // Malformed bcrypt strings (invalid length, bad chars, corrupt salt, truncated)
+  assert.equal(await verifyPassword("secret", "$2a$10$short"), false);
+  assert.equal(await verifyPassword("secret", "$2a$99$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy"), false);
+  assert.equal(await verifyPassword("secret", "$2a$10$invalid!characters!in!the!hash!string!12345678901234567890"), false);
+  assert.equal(await verifyPassword("secret", "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhW"), false); // 1 char short
+  assert.equal(await verifyPassword("secret", "$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWyy"), false); // 1 char too long
 });
 
 test("Session token signing and cryptographic verification", () => {
