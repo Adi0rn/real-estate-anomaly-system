@@ -12,22 +12,10 @@ import {
   IconAlertTriangle,
   IconSparkles,
 } from "@/components/icons";
-import { getPropertyImage, formatINR } from "@/src/lib/property-images";
+import { getPropertyImage, getPropertyFallback, formatINR } from "@/src/lib/property-images";
 
 type PropertyCardProps = {
-  property:
-    | Property
-    | (SearchResult & {
-        city?: string;
-        price?: string;
-        propertyType?: string;
-        listingType?: string;
-        bedrooms?: number;
-        bathrooms?: number;
-        areaSqft?: number;
-        address?: string;
-        state?: string;
-      });
+  property: Property | SearchResult;
   similarity?: number;
   hasAnomaly?: boolean;
   anomalyScore?: string;
@@ -55,7 +43,7 @@ export default function PropertyCard({
         <div className="relative aspect-[16/10] w-full overflow-hidden bg-slate-100 dark:bg-[#111315]">
           <Link href={`/properties/${property.propertyId}`} className="block h-full w-full">
             <Image
-              src={imageError ? "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" : imageUrl}
+              src={imageError ? getPropertyFallback(property.propertyType) : imageUrl}
               alt={property.title || "Property listing"}
               fill
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"

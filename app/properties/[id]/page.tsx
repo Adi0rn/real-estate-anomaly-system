@@ -11,7 +11,7 @@ import {
   IconShieldCheck,
   IconCheck,
 } from "@/components/icons";
-import { getPropertyGallery, formatINR } from "@/src/lib/property-images";
+import { getPropertyGallery, getPropertyFallback, formatINR } from "@/src/lib/property-images";
 
 type PageProps = {
   params: Promise<{ id: string }>;
@@ -26,6 +26,7 @@ function PropertyDetailContent({ params }: PageProps) {
   const [error, setError] = useState<string | null>(null);
   const [isDbConnected, setIsDbConnected] = useState<boolean | null>(null);
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number>(0);
+  const [brokenImages, setBrokenImages] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
     let isMounted = true;
@@ -136,12 +137,13 @@ function PropertyDetailContent({ params }: PageProps) {
               {/* Primary Main Image */}
               <div className="relative aspect-[16/10] md:col-span-3 md:aspect-auto md:h-[420px] overflow-hidden">
                 <Image
-                  src={galleryImages[selectedGalleryIndex]}
+                  src={brokenImages[selectedGalleryIndex] ? getPropertyFallback(detail.propertyType) : galleryImages[selectedGalleryIndex]}
                   alt={detail.title}
                   fill
                   priority
                   sizes="(max-width: 768px) 100vw, 75vw"
                   className="object-cover transition-opacity duration-200"
+                  onError={() => setBrokenImages((prev) => ({ ...prev, [selectedGalleryIndex]: true }))}
                 />
                 <div className="absolute top-3 left-3 flex gap-1.5">
                   <span className="rounded bg-slate-900/85 dark:bg-black/80 backdrop-blur-xs px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
@@ -169,11 +171,12 @@ function PropertyDetailContent({ params }: PageProps) {
                       }`}
                     >
                       <Image
-                        src={img}
+                        src={brokenImages[actualIdx] ? getPropertyFallback(detail.propertyType) : img}
                         alt={`Photo view ${actualIdx}`}
                         fill
                         sizes="(max-width: 768px) 33vw, 25vw"
                         className="object-cover"
+                        onError={() => setBrokenImages((prev) => ({ ...prev, [actualIdx]: true }))}
                       />
                     </button>
                   );

@@ -93,46 +93,34 @@ export async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, saltRounds);
 }
 
+// Strict bcrypt format regex ($2a$ or $2b$ with 2-digit cost parameter and 53-character base64 salt+hash)
+// Rejects unsupported revisions such as $2x$ and legacy non-bcrypt formats
+const BCRYPT_HASH_REGEX = /^\$2[ab]\$\d{2}\$[./A-Za-z0-9]{53}$/;
+
 /**
- * Verifies a password against stored passwordHash using bcrypt,
- * with constant-time fallback support for seeded demo records.
+ * Verifies a plain-text password against a stored bcrypt hash.
+ * Fails closed on missing input, malformed hashes, or non-bcrypt strings.
  */
-export async function verifyPassword(password: string, storedHash: string): Promise<boolean> {
-  if (!password || !storedHash) return false;
-
-  // Standard bcrypt hash
+export async function verifyPassword(password: unknown, storedHash: unknown): Promise<boolean> {
   if (
-    storedHash.startsWith("$2a$") ||
-    storedHash.startsWith("$2b$") ||
-    storedHash.startsWith("$2y$")
+    typeof password !== "string" ||
+    password.length === 0 ||
+    typeof storedHash !== "string" ||
+    storedHash.length === 0
   ) {
-    return bcrypt.compare(password, storedHash);
+    return false;
   }
 
-  // Backward compatibility for demo seed strings (constant-time comparison)
-  const compareConstantTime = (a: string, b: string): boolean => {
-    const bufA = Buffer.from(a);
-    const bufB = Buffer.from(b);
-    if (bufA.length !== bufB.length) return false;
-    return crypto.timingSafeEqual(bufA, bufB);
-  };
-
-  if (storedHash === "admin_demo_hash") {
-    return (
-      compareConstantTime(password, "admin_demo_hash") ||
-      compareConstantTime(password, "admin123") ||
-      compareConstantTime(password, "admin")
-    );
+  // Reject any string that does not conform to the canonical bcrypt hash format
+  if (!BCRYPT_HASH_REGEX.test(storedHash)) {
+    return false;
   }
 
-  if (storedHash === "demo_hash_123") {
-    return (
-      compareConstantTime(password, "demo_hash_123") ||
-      compareConstantTime(password, "password123")
-    );
+  try {
+    return await bcrypt.compare(password, storedHash);
+  } catch {
+    return false;
   }
-
-  return compareConstantTime(password, storedHash);
 }
 
 /**

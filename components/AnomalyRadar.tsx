@@ -140,7 +140,7 @@ export default function AnomalyRadar({
             </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             {/* Filter Tabs */}
             <div className="inline-flex rounded border border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#111315] p-0.5 text-xs">
               {(["ALL", "PENDING", "CONFIRMED", "DISMISSED"] as const).map((tab) => (

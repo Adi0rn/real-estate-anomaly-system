@@ -58,6 +58,20 @@ export type SearchResult = {
   propertyId: number;
   title: string;
   description: string | null;
+  propertyType: string;
+  listingType: string;
+  price: string;
+  areaSqft: number;
+  bedrooms: number;
+  bathrooms: number;
+  address: string;
+  city: string;
+  state: string;
+  pincode: string;
+  status: string;
+  ownerId: number;
+  createdAt: string;
+  updatedAt: string;
   similarity: number;
 };
 

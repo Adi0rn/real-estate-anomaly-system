@@ -12,7 +12,7 @@ import {
   IconAlertTriangle,
   IconX,
 } from "@/components/icons";
-import { getPropertyImage, formatINR } from "@/src/lib/property-images";
+import { getPropertyImage, getPropertyFallback, formatINR } from "@/src/lib/property-images";
 
 type PropertyDetailModalProps = {
   propertyId: number | null;
@@ -26,6 +26,7 @@ export default function PropertyDetailModal({
   const [detail, setDetail] = useState<PropertyDetail | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+  const [imageError, setImageError] = useState<boolean>(false);
 
   useEffect(() => {
     if (!propertyId) return;
@@ -35,6 +36,7 @@ export default function PropertyDetailModal({
     const loadDetails = async () => {
       try {
         setLoading(true);
+        setImageError(false);
         const res = await fetch(`/api/properties/${propertyId}`);
         const data = await res.json();
         if (!isMounted) return;
@@ -107,11 +109,12 @@ export default function PropertyDetailModal({
             {/* Header Photo Crop */}
             <div className="relative aspect-[21/9] w-full bg-slate-100 dark:bg-[#111315] overflow-hidden">
               <Image
-                src={imageUrl}
+                src={imageError ? getPropertyFallback(detail.propertyType) : imageUrl}
                 alt={detail.title}
                 fill
                 sizes="(max-width: 768px) 100vw, 672px"
                 className="object-cover"
+                onError={() => setImageError(true)}
               />
               <div className="absolute top-3 left-3 flex gap-1.5">
                 <span className="rounded bg-slate-900/85 dark:bg-black/80 backdrop-blur-xs px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
