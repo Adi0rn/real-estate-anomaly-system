@@ -1,7 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import Link from "next/link";
 import { AnomalyRecord } from "@/types";
+import {
+  IconAlertTriangle,
+  IconShieldCheck,
+  IconX,
+  IconRefresh,
+  IconTrendingUp,
+  IconTrendingDown,
+} from "@/components/icons";
+import { formatINR } from "@/src/lib/property-images";
 
 type AnomalyRadarProps = {
   anomalies: AnomalyRecord[];
@@ -26,260 +36,389 @@ export default function AnomalyRadar({
   isReviewingId,
   reviewMessage,
 }: AnomalyRadarProps) {
-  const formatPrice = (priceStr?: string) => {
-    if (!priceStr) return "N/A";
-    const num = Number(priceStr);
-    if (isNaN(num)) return priceStr;
-    return new Intl.NumberFormat("en-IN", {
-      style: "currency",
-      currency: "INR",
-      maximumFractionDigits: 0,
-    }).format(num);
-  };
-
-  const formatDate = (dateStr?: string) => {
-    if (!dateStr) return "-";
-    return new Date(dateStr).toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
+  const [statusFilter, setStatusFilter] = useState<"ALL" | "PENDING" | "CONFIRMED" | "DISMISSED">("ALL");
+  const [selectedAnomalyForDrawer, setSelectedAnomalyForDrawer] = useState<AnomalyRecord | null>(null);
 
   const pendingCount = anomalies.filter((a) => a.status === "PENDING").length;
   const confirmedCount = anomalies.filter((a) => a.status === "CONFIRMED").length;
   const dismissedCount = anomalies.filter((a) => a.status === "DISMISSED").length;
 
+  const filteredAnomalies = anomalies.filter((item) => {
+    if (statusFilter === "ALL") return true;
+    return item.status === statusFilter;
+  });
+
+  const formatDate = (dateStr?: string) => {
+    if (!dateStr) return "—";
+    return new Date(dateStr).toLocaleDateString("en-US", {
+      month: "short",
+      day: "numeric",
+      year: "numeric",
+    });
+  };
+
   return (
     <div className="space-y-6">
-      {/* Header & Metrics */}
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-            <span>⚠️</span> Anomaly Detection Radar
-          </h2>
-          <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-1">
-            Properties flagged with statistically significant deviation from comparable market pricing.
-          </p>
+      {/* KPI Summary Strip */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {/* Total Flagged */}
+        <div className="rounded-lg border border-slate-200/90 bg-white p-4 shadow-2xs">
+          <span className="block text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+            Total Flagged Units
+          </span>
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="text-2xl font-bold tracking-tight text-slate-900 font-mono tabular-nums">
+              {isLoading ? "—" : anomalies.length}
+            </span>
+            <span className="text-[11px] text-slate-500 font-sans">listings</span>
+          </div>
         </div>
 
-        <button
-          type="button"
-          onClick={onRefresh}
-          disabled={isLoading}
-          className="inline-flex items-center gap-1.5 self-start sm:self-auto rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 shadow-2xs hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 dark:hover:bg-zinc-850"
-        >
-          <svg
-            className={`h-3.5 w-3.5 ${isLoading ? "animate-spin" : ""}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-            />
-          </svg>
-          Refresh Feed
-        </button>
+        {/* Pending Review */}
+        <div className="rounded-lg border border-amber-200 bg-amber-50/50 p-4 shadow-2xs">
+          <span className="block text-[11px] font-semibold uppercase tracking-wider text-amber-800">
+            Pending Audit
+          </span>
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="text-2xl font-bold tracking-tight text-amber-950 font-mono tabular-nums">
+              {isLoading ? "—" : pendingCount}
+            </span>
+            <span className="text-[11px] text-amber-800/80 font-sans">awaiting decision</span>
+          </div>
+        </div>
+
+        {/* Confirmed Outliers */}
+        <div className="rounded-lg border border-rose-200 bg-rose-50/50 p-4 shadow-2xs">
+          <span className="block text-[11px] font-semibold uppercase tracking-wider text-rose-800">
+            Confirmed Mispriced
+          </span>
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="text-2xl font-bold tracking-tight text-rose-950 font-mono tabular-nums">
+              {isLoading ? "—" : confirmedCount}
+            </span>
+            <span className="text-[11px] text-rose-800/80 font-sans">verified anomalies</span>
+          </div>
+        </div>
+
+        {/* Dismissed False Positives */}
+        <div className="rounded-lg border border-slate-200/90 bg-white p-4 shadow-2xs">
+          <span className="block text-[11px] font-semibold uppercase tracking-wider text-slate-500">
+            Dismissed / Clean
+          </span>
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="text-2xl font-bold tracking-tight text-slate-700 font-mono tabular-nums">
+              {isLoading ? "—" : dismissedCount}
+            </span>
+            <span className="text-[11px] text-slate-500 font-sans">false alarms</span>
+          </div>
+        </div>
       </div>
 
-      {/* Review Feedback Message Banner */}
+      {/* Review Feedback Banner */}
       {reviewMessage && (
         <div
-          className={`rounded-2xl p-4 text-xs font-medium ${
+          className={`rounded-md p-3 text-xs font-medium flex items-center justify-between ${
             reviewMessage.type === "success"
-              ? "bg-emerald-50 text-emerald-800 border border-emerald-200 dark:bg-emerald-950/40 dark:text-emerald-300 dark:border-emerald-800"
-              : "bg-red-50 text-red-800 border border-red-200 dark:bg-red-950/40 dark:text-red-300 dark:border-red-800"
+              ? "bg-emerald-50 text-emerald-900 border border-emerald-200"
+              : "bg-rose-50 text-rose-900 border border-rose-200"
           }`}
         >
-          {reviewMessage.text}
+          <span>{reviewMessage.text}</span>
         </div>
       )}
 
-      {/* Metric Cards */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-        <div className="rounded-xl border border-zinc-200 bg-white p-4 dark:border-zinc-800 dark:bg-zinc-900 shadow-2xs">
-          <span className="block text-[11px] font-medium text-zinc-400">Total Flagged</span>
-          <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-50">
-            {isLoading ? "-" : anomalies.length}
-          </span>
+      {/* Audit Table Container */}
+      <div className="rounded-lg border border-slate-200/90 bg-white shadow-2xs overflow-hidden">
+        {/* Table Control Header */}
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-200 p-4 bg-slate-50/60">
+          <div className="flex items-center gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-700">
+              Pricing Anomaly Audit Queue
+            </span>
+            <span className="text-xs text-slate-400 font-mono tabular-nums">
+              ({filteredAnomalies.length} items)
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {/* Filter Tabs */}
+            <div className="inline-flex rounded border border-slate-200 bg-white p-0.5 text-xs">
+              {(["ALL", "PENDING", "CONFIRMED", "DISMISSED"] as const).map((tab) => (
+                <button
+                  key={tab}
+                  type="button"
+                  onClick={() => setStatusFilter(tab)}
+                  className={`rounded px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                    statusFilter === tab
+                      ? "bg-slate-900 text-white font-semibold shadow-2xs"
+                      : "text-slate-600 hover:text-slate-900"
+                  }`}
+                >
+                  {tab === "ALL" ? "All" : tab.charAt(0) + tab.slice(1).toLowerCase()}
+                </button>
+              ))}
+            </div>
+
+            {/* Refresh Feed */}
+            <button
+              type="button"
+              onClick={onRefresh}
+              disabled={isLoading}
+              className="inline-flex items-center gap-1.5 rounded border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-50 disabled:opacity-50 transition-colors"
+            >
+              <IconRefresh className={`w-3.5 h-3.5 ${isLoading ? "animate-spin" : ""}`} />
+              <span>Refresh</span>
+            </button>
+          </div>
         </div>
-        <div className="rounded-xl border border-amber-200 bg-amber-50/50 p-4 dark:border-amber-900/50 dark:bg-amber-950/20 shadow-2xs">
-          <span className="block text-[11px] font-medium text-amber-800/80 dark:text-amber-300/80">Pending Review</span>
-          <span className="text-2xl font-bold text-amber-950 dark:text-amber-100">
-            {isLoading ? "-" : pendingCount}
-          </span>
-        </div>
-        <div className="rounded-xl border border-red-200 bg-red-50/50 p-4 dark:border-red-900/50 dark:bg-red-950/20 shadow-2xs">
-          <span className="block text-[11px] font-medium text-red-800/80 dark:text-red-300/80">Confirmed Anomalies</span>
-          <span className="text-2xl font-bold text-red-950 dark:text-red-100">
-            {isLoading ? "-" : confirmedCount}
-          </span>
-        </div>
-        <div className="rounded-xl border border-zinc-200 bg-zinc-50 p-4 dark:border-zinc-800 dark:bg-zinc-900/50 shadow-2xs">
-          <span className="block text-[11px] font-medium text-zinc-400">Dismissed</span>
-          <span className="text-2xl font-bold text-zinc-700 dark:text-zinc-300">
-            {isLoading ? "-" : dismissedCount}
-          </span>
-        </div>
+
+        {/* Table Content */}
+        {isLoading ? (
+          <div className="p-8 space-y-3">
+            {[1, 2, 3, 4, 5].map((i) => (
+              <div key={i} className="h-10 w-full animate-pulse rounded bg-slate-100" />
+            ))}
+          </div>
+        ) : error ? (
+          <div className="p-12 text-center text-xs text-slate-500">
+            <IconAlertTriangle className="mx-auto h-6 w-6 text-amber-600 mb-2" />
+            <p className="font-semibold text-slate-800">Failed to load anomaly records</p>
+            <p className="mt-1">{error}</p>
+          </div>
+        ) : filteredAnomalies.length === 0 ? (
+          <div className="p-12 text-center text-xs text-slate-500">
+            <IconShieldCheck className="mx-auto h-6 w-6 text-emerald-600 mb-2" />
+            <p className="font-semibold text-slate-800">No anomalies in this category</p>
+            <p className="mt-1">All properties conform to benchmark parameters or have been handled.</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs divide-y divide-slate-200">
+              <thead className="bg-slate-50 text-[10px] font-semibold uppercase tracking-wider text-slate-500">
+                <tr>
+                  <th className="px-4 py-3">Property Asset</th>
+                  <th className="px-4 py-3">Listed Asking Price</th>
+                  <th className="px-4 py-3">Model Benchmark</th>
+                  <th className="px-4 py-3">Variance</th>
+                  <th className="px-4 py-3">Anomaly Score</th>
+                  <th className="px-4 py-3">Audit Status</th>
+                  <th className="px-4 py-3 text-right">Review Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 font-sans">
+                {filteredAnomalies.map((item) => {
+                  const scoreNum = parseFloat(item.anomalyScore);
+                  const isPending = item.status === "PENDING";
+                  const isReviewingThis = isReviewingId === item.anomalyId;
+
+                  const diffNum = parseFloat(item.priceDifference);
+                  const isOverpriced = diffNum > 0;
+
+                  return (
+                    <tr
+                      key={item.anomalyId}
+                      className="hover:bg-slate-50/70 transition-colors"
+                    >
+                      {/* Property Title & ID */}
+                      <td className="px-4 py-3 max-w-[240px]">
+                        <div className="flex items-start gap-2">
+                          <button
+                            type="button"
+                            onClick={() => onSelectProperty(item.propertyId)}
+                            className="font-semibold text-slate-900 hover:underline line-clamp-1 text-left"
+                          >
+                            {item.property?.title || `Property #${item.propertyId}`}
+                          </button>
+                        </div>
+                        <div className="flex items-center gap-1.5 text-[11px] text-slate-500 mt-0.5">
+                          <span className="font-mono">#{item.propertyId}</span>
+                          <span>•</span>
+                          <span>{item.property?.city || "Unknown"}</span>
+                          <span>•</span>
+                          <span>{item.property?.propertyType || "Unit"}</span>
+                        </div>
+                      </td>
+
+                      {/* Actual Price */}
+                      <td className="px-4 py-3 font-mono font-semibold text-slate-950 tabular-nums">
+                        {formatINR(item.actualPrice)}
+                      </td>
+
+                      {/* Expected Price */}
+                      <td className="px-4 py-3 font-mono text-slate-600 tabular-nums">
+                        {formatINR(item.expectedPrice)}
+                      </td>
+
+                      {/* Variance */}
+                      <td className="px-4 py-3 font-mono tabular-nums">
+                        <span
+                          className={`inline-flex items-center gap-1 font-semibold ${
+                            isOverpriced ? "text-amber-700" : "text-indigo-700"
+                          }`}
+                        >
+                          {isOverpriced ? (
+                            <IconTrendingUp className="w-3.5 h-3.5" />
+                          ) : (
+                            <IconTrendingDown className="w-3.5 h-3.5" />
+                          )}
+                          <span>
+                            {isOverpriced ? "+" : ""}
+                            {formatINR(item.priceDifference)}
+                          </span>
+                        </span>
+                      </td>
+
+                      {/* Score */}
+                      <td className="px-4 py-3 font-mono tabular-nums">
+                        <div className="flex items-center gap-2">
+                          <span
+                            className={`font-semibold ${
+                              scoreNum >= 0.7
+                                ? "text-rose-700"
+                                : scoreNum >= 0.4
+                                ? "text-amber-700"
+                                : "text-slate-700"
+                            }`}
+                          >
+                            {scoreNum.toFixed(3)}
+                          </span>
+                          <div className="h-1.5 w-12 rounded-full bg-slate-200 overflow-hidden">
+                            <div
+                              className={`h-full ${
+                                scoreNum >= 0.7
+                                  ? "bg-rose-600"
+                                  : scoreNum >= 0.4
+                                  ? "bg-amber-600"
+                                  : "bg-slate-700"
+                              }`}
+                              style={{ width: `${Math.min(100, Math.round(scoreNum * 100))}%` }}
+                            />
+                          </div>
+                        </div>
+                      </td>
+
+                      {/* Status */}
+                      <td className="px-4 py-3">
+                        <span
+                          className={`inline-block rounded px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider ${
+                            item.status === "PENDING"
+                              ? "bg-amber-100 text-amber-900 border border-amber-200"
+                              : item.status === "CONFIRMED"
+                              ? "bg-rose-100 text-rose-900 border border-rose-200"
+                              : "bg-slate-100 text-slate-700 border border-slate-200"
+                          }`}
+                        >
+                          {item.status}
+                        </span>
+                      </td>
+
+                      {/* Actions */}
+                      <td className="px-4 py-3 text-right">
+                        <div className="inline-flex items-center gap-1.5">
+                          {isAdmin && isPending && onReviewAnomaly && (
+                            <>
+                              <button
+                                type="button"
+                                disabled={Boolean(isReviewingId)}
+                                onClick={() => onReviewAnomaly(item.anomalyId, "CONFIRMED")}
+                                className="rounded bg-rose-700 px-2.5 py-1 text-[11px] font-semibold text-white shadow-2xs hover:bg-rose-800 disabled:opacity-50 transition-colors"
+                                title="Confirm this pricing outlier"
+                              >
+                                {isReviewingThis ? "..." : "Confirm"}
+                              </button>
+                              <button
+                                type="button"
+                                disabled={Boolean(isReviewingId)}
+                                onClick={() => onReviewAnomaly(item.anomalyId, "DISMISSED")}
+                                className="rounded border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-slate-700 shadow-2xs hover:bg-slate-50 disabled:opacity-50 transition-colors"
+                                title="Dismiss this false positive"
+                              >
+                                {isReviewingThis ? "..." : "Dismiss"}
+                              </button>
+                            </>
+                          )}
+
+                          <button
+                            type="button"
+                            onClick={() => setSelectedAnomalyForDrawer(item)}
+                            className="rounded border border-slate-200 bg-slate-50 px-2 py-1 text-[11px] font-medium text-slate-700 hover:bg-slate-100"
+                          >
+                            Inspect Reason
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
 
-      {/* Content Feed */}
-      {isLoading ? (
-        <div className="space-y-3">
-          {[1, 2, 3].map((i) => (
-            <div
-              key={i}
-              className="h-28 animate-pulse rounded-2xl border border-zinc-200 bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-850"
-            />
-          ))}
-        </div>
-      ) : error ? (
-        <div className="rounded-2xl border border-zinc-200 bg-white p-8 text-center dark:border-zinc-800 dark:bg-zinc-900">
-          <span className="text-3xl">⚠️</span>
-          <h3 className="mt-2 text-sm font-bold text-zinc-900 dark:text-zinc-50">
-            Could not retrieve anomalies
-          </h3>
-          <p className="mt-1 text-xs text-zinc-500 max-w-md mx-auto">{error}</p>
-        </div>
-      ) : anomalies.length === 0 ? (
-        <div className="rounded-2xl border border-zinc-200 bg-white p-12 text-center dark:border-zinc-800 dark:bg-zinc-900">
-          <span className="text-4xl">✅</span>
-          <h3 className="mt-3 text-base font-bold text-zinc-900 dark:text-zinc-50">
-            No active anomalies detected
-          </h3>
-          <p className="mt-1 text-xs text-zinc-500 max-w-sm mx-auto">
-            All evaluated properties currently fall within expected statistical pricing thresholds for their local market.
-          </p>
-        </div>
-      ) : (
-        <div className="space-y-3">
-          {anomalies.map((item) => {
-            const scoreNum = Number(item.anomalyScore);
-            const scorePercent = Math.min(100, Math.round(scoreNum * 100));
-            const isPending = item.status === "PENDING";
-            const isReviewingThis = isReviewingId === item.anomalyId;
+      {/* Reason Details Modal Drawer */}
+      {selectedAnomalyForDrawer && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <div
+            onClick={() => setSelectedAnomalyForDrawer(null)}
+            className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs"
+          />
 
-            return (
-              <div
-                key={item.anomalyId}
-                className="group flex flex-col justify-between gap-4 rounded-2xl border border-zinc-200 bg-white p-5 shadow-2xs transition-all duration-200 hover:border-amber-300 hover:shadow-sm dark:border-zinc-800 dark:bg-zinc-900 dark:hover:border-amber-900/60 sm:flex-row sm:items-center"
+          <div className="relative z-10 w-full max-w-lg rounded-lg border border-slate-200 bg-white p-6 shadow-xl">
+            <div className="flex items-start justify-between border-b border-slate-100 pb-3">
+              <div>
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-400">
+                  Statistical Audit Breakdown
+                </span>
+                <h3 className="text-base font-bold text-slate-900">
+                  Anomaly #{selectedAnomalyForDrawer.anomalyId} (Property #{selectedAnomalyForDrawer.propertyId})
+                </h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setSelectedAnomalyForDrawer(null)}
+                className="rounded-full p-1 text-slate-400 hover:text-slate-600"
               >
-                <div
-                  className="space-y-1.5 flex-1 cursor-pointer"
-                  onClick={() => onSelectProperty(item.propertyId)}
-                >
-                  <div className="flex flex-wrap items-center gap-2">
-                    <span
-                      className={`rounded-md px-2 py-0.5 text-[10px] font-bold ${
-                        item.status === "PENDING"
-                          ? "bg-amber-100 text-amber-800 dark:bg-amber-900/50 dark:text-amber-200"
-                          : item.status === "CONFIRMED"
-                          ? "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-200"
-                          : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
-                      }`}
-                    >
-                      {item.status}
-                    </span>
-                    <span className="text-xs font-semibold text-zinc-500">
-                      Property #{item.propertyId}
-                    </span>
-                    {item.property?.city && (
-                      <span className="rounded-md bg-zinc-100 px-2 py-0.5 text-[10px] font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400">
-                        {item.property.city}
-                      </span>
-                    )}
-                  </div>
+                <IconX className="w-4 h-4" />
+              </button>
+            </div>
 
-                  <h3 className="text-sm font-bold text-zinc-900 group-hover:text-amber-600 dark:text-zinc-50 dark:group-hover:text-amber-400 transition-colors">
-                    {item.property?.title || `Property ID ${item.propertyId}`}
-                  </h3>
-
-                  <p className="text-xs text-zinc-600 dark:text-zinc-300">
-                    {item.reason}
-                  </p>
-
-                  <div className="text-[10px] text-zinc-400">
-                    Detected: {formatDate(item.detectedAt)}
-                  </div>
+            <div className="mt-4 space-y-3 text-xs">
+              <div className="grid grid-cols-2 gap-3 rounded bg-slate-50 p-3 font-mono">
+                <div>
+                  <span className="text-slate-400 text-[10px] uppercase font-sans block">Listed Price</span>
+                  <span className="font-bold text-slate-900 text-sm">
+                    {formatINR(selectedAnomalyForDrawer.actualPrice)}
+                  </span>
                 </div>
-
-                {/* Numbers, Score & Actions */}
-                <div className="flex shrink-0 flex-col sm:items-end gap-2.5 border-t border-zinc-100 pt-3 sm:border-t-0 sm:pt-0 dark:border-zinc-800">
-                  <div className="text-left sm:text-right">
-                    <div className="text-xs text-zinc-400">
-                      Actual:{" "}
-                      <span className="font-bold text-zinc-900 dark:text-zinc-100">
-                        {formatPrice(item.actualPrice)}
-                      </span>
-                    </div>
-                    <div className="text-xs text-zinc-400">
-                      Expected:{" "}
-                      <span className="font-medium text-zinc-600 dark:text-zinc-400">
-                        {formatPrice(item.expectedPrice)}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Anomaly score progress */}
-                  <div className="w-full sm:w-36">
-                    <div className="flex items-center justify-between text-[10px] text-zinc-400 mb-0.5">
-                      <span>Anomaly Score</span>
-                      <span className="font-bold text-amber-600 dark:text-amber-400">
-                        {scoreNum.toFixed(2)}
-                      </span>
-                    </div>
-                    <div className="h-1.5 w-full overflow-hidden rounded-full bg-zinc-100 dark:bg-zinc-800">
-                      <div
-                        className="h-full bg-gradient-to-r from-amber-500 to-red-500 transition-all duration-300"
-                        style={{ width: `${scorePercent}%` }}
-                      />
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex flex-wrap items-center gap-1.5 self-start sm:self-end">
-                    {/* Admin Review Actions - Only shown to authenticated ADMIN for PENDING anomalies */}
-                    {isAdmin && isPending && onReviewAnomaly && (
-                      <div className="flex items-center gap-1">
-                        <button
-                          type="button"
-                          disabled={Boolean(isReviewingId)}
-                          onClick={() => onReviewAnomaly(item.anomalyId, "CONFIRMED")}
-                          className="rounded-lg bg-red-600 px-2.5 py-1 text-[11px] font-semibold text-white shadow-2xs hover:bg-red-700 disabled:opacity-50 transition-colors"
-                          title="Confirm this price anomaly"
-                        >
-                          {isReviewingThis ? "..." : "Confirm"}
-                        </button>
-                        <button
-                          type="button"
-                          disabled={Boolean(isReviewingId)}
-                          onClick={() => onReviewAnomaly(item.anomalyId, "DISMISSED")}
-                          className="rounded-lg border border-zinc-200 bg-white px-2.5 py-1 text-[11px] font-semibold text-zinc-700 shadow-2xs hover:bg-zinc-50 disabled:opacity-50 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-300 transition-colors"
-                          title="Dismiss this anomaly"
-                        >
-                          {isReviewingThis ? "..." : "Dismiss"}
-                        </button>
-                      </div>
-                    )}
-
-                    <button
-                      type="button"
-                      onClick={() => onSelectProperty(item.propertyId)}
-                      className="rounded-lg bg-zinc-100 px-2.5 py-1 text-[11px] font-semibold text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300"
-                    >
-                      Profile →
-                    </button>
-                  </div>
+                <div>
+                  <span className="text-slate-400 text-[10px] uppercase font-sans block">Benchmark Model</span>
+                  <span className="font-bold text-slate-900 text-sm">
+                    {formatINR(selectedAnomalyForDrawer.expectedPrice)}
+                  </span>
                 </div>
               </div>
-            );
-          })}
+
+              <div>
+                <span className="font-semibold text-slate-900 block mb-1">
+                  Algorithmic Deviation Justification:
+                </span>
+                <div className="rounded border border-amber-200 bg-amber-50/50 p-3 text-slate-800 leading-relaxed font-sans">
+                  {selectedAnomalyForDrawer.reason}
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between text-slate-500 pt-2 border-t border-slate-100">
+                <span>Detected: {formatDate(selectedAnomalyForDrawer.detectedAt)}</span>
+                <Link
+                  href={`/properties/${selectedAnomalyForDrawer.propertyId}`}
+                  className="font-semibold text-slate-900 hover:underline"
+                >
+                  View Property Page →
+                </Link>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>

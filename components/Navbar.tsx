@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { IconSparkles, IconShieldAlert, IconBuilding, IconX } from "@/components/icons";
 
 type SafeUser = {
   userId: number;
@@ -64,56 +65,42 @@ export default function Navbar({
   };
 
   return (
-    <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/95 backdrop-blur-md dark:border-zinc-800 dark:bg-zinc-950/95">
+    <header className="sticky top-0 z-40 border-b border-slate-200/80 bg-[#fbfbfa]/95 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
         {/* Brand */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-600 shadow-md shadow-indigo-500/20 text-white font-bold text-lg group-hover:scale-105 transition-transform">
-            🏢
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <div className="flex h-8 w-8 items-center justify-center rounded-md bg-slate-900 text-white font-semibold shadow-xs group-hover:bg-slate-800 transition-colors">
+            <IconBuilding className="w-4 h-4 text-slate-100" />
           </div>
-          <div>
+          <div className="flex flex-col">
             <div className="flex items-center gap-2">
-              <span className="text-base font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-lg">
-                PropAnomaly
+              <span className="text-sm font-bold tracking-tight text-slate-900">
+                PROPAUDIT
               </span>
-              <span className="hidden sm:inline-block rounded-md bg-indigo-50 px-1.5 py-0.5 text-[10px] font-bold text-indigo-700 dark:bg-indigo-950/60 dark:text-indigo-300 border border-indigo-200 dark:border-indigo-800">
-                AI Radar
+              <span className="hidden sm:inline-block border border-slate-200 bg-slate-100 px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-slate-600 rounded">
+                Analytics
               </span>
             </div>
-            <p className="hidden text-xs text-zinc-500 dark:text-zinc-400 sm:block">
-              Valuation & Anomaly Detection System
-            </p>
+            <span className="hidden text-[10px] text-slate-500 tracking-wide sm:block">
+              Valuation & Anomaly Intelligence
+            </span>
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-1 rounded-xl bg-zinc-100 p-1 dark:bg-zinc-900">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-1 rounded-lg border border-slate-200 bg-white p-1 text-xs shadow-2xs">
           <Link
             href="/"
             onClick={() => {
               if (isHome && onSectionSelect) onSectionSelect("explore");
             }}
-            className={`rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
+            className={`rounded-md px-3 py-1.5 font-medium transition-colors ${
               isHome && activeSection !== "semantic"
-                ? "bg-white text-zinc-900 shadow-xs dark:bg-zinc-800 dark:text-zinc-50"
-                : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
+                ? "bg-slate-900 text-white"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            Home
-          </Link>
-
-          <Link
-            href="/#browse"
-            onClick={() => {
-              if (isHome && onSectionSelect) onSectionSelect("explore");
-            }}
-            className={`rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
-              isHome && activeSection === "explore"
-                ? "text-indigo-600 dark:text-indigo-400"
-                : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
-            }`}
-          >
-            Browse Properties
+            Listings
           </Link>
 
           <button
@@ -125,59 +112,57 @@ export default function Navbar({
                 router.push("/#semantic");
               }
             }}
-            className={`flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
+            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-medium transition-colors ${
               isHome && activeSection === "semantic"
-                ? "bg-white text-indigo-600 shadow-xs dark:bg-zinc-800 dark:text-indigo-400"
-                : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
+                ? "bg-slate-900 text-white"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            <span>✨</span>
+            <IconSparkles className="w-3.5 h-3.5 opacity-80" />
             <span>Semantic Search</span>
           </button>
 
           <Link
             href="/admin"
-            className={`flex items-center gap-1.5 rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all ${
+            className={`inline-flex items-center gap-1.5 rounded-md px-3 py-1.5 font-medium transition-colors ${
               isAdmin
-                ? "bg-white text-amber-600 shadow-xs dark:bg-zinc-800 dark:text-amber-400"
-                : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-200"
+                ? "bg-slate-900 text-white"
+                : "text-slate-600 hover:text-slate-900"
             }`}
           >
-            <span>⚠️</span>
-            <span>Admin</span>
+            <IconShieldAlert className="w-3.5 h-3.5 text-amber-600" />
+            <span>Anomaly Audit</span>
           </Link>
         </nav>
 
-        {/* Right side auth & DB status */}
+        {/* Right side controls */}
         <div className="flex items-center gap-3">
-          {/* DB Indicator */}
-          <div className="hidden lg:flex items-center">
-            {isDbConnected === true ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                Live DB
-              </span>
-            ) : isDbConnected === false ? (
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700 dark:bg-amber-950/50 dark:text-amber-400 border border-amber-200 dark:border-amber-800">
-                <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
-                Offline
-              </span>
-            ) : null}
-          </div>
+          {/* Database Connectivity Status */}
+          {isDbConnected === true ? (
+            <div className="hidden lg:flex items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600 shadow-2xs">
+              <span className="h-1.5 w-1.5 rounded-full bg-emerald-600" />
+              <span>Live Database</span>
+            </div>
+          ) : isDbConnected === false ? (
+            <div className="hidden lg:flex items-center gap-1.5 rounded-full border border-amber-200 bg-amber-50 px-2.5 py-1 text-[11px] font-medium text-amber-800">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-500" />
+              <span>Database Offline</span>
+            </div>
+          ) : null}
 
-          {/* User Auth Info / Actions */}
+          {/* User Auth */}
           <div className="hidden sm:flex items-center gap-2">
             {user ? (
               <div className="flex items-center gap-2">
-                <div className="flex items-center gap-1.5 rounded-xl border border-zinc-200 bg-zinc-50 px-2.5 py-1 text-xs dark:border-zinc-800 dark:bg-zinc-900">
-                  <span className="font-semibold text-zinc-900 dark:text-zinc-100 max-w-[120px] truncate">
+                <div className="flex items-center gap-1.5 rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs">
+                  <span className="font-semibold text-slate-800 max-w-[120px] truncate">
                     {user.name}
                   </span>
                   <span
-                    className={`rounded-md px-1.5 py-0.2 text-[10px] font-bold ${
+                    className={`rounded px-1 text-[9px] font-bold uppercase tracking-wider ${
                       user.role === "ADMIN"
-                        ? "bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300"
-                        : "bg-zinc-200 text-zinc-700 dark:bg-zinc-800 dark:text-zinc-300"
+                        ? "bg-amber-100 text-amber-800"
+                        : "bg-slate-100 text-slate-600"
                     }`}
                   >
                     {user.role}
@@ -188,22 +173,22 @@ export default function Navbar({
                   type="button"
                   onClick={handleLogout}
                   disabled={isLoggingOut}
-                  className="rounded-xl border border-zinc-200 bg-white px-3 py-1.5 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 disabled:opacity-50 dark:border-zinc-800 dark:bg-zinc-900 dark:text-zinc-300 transition-colors"
+                  className="rounded-md border border-slate-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-700 hover:bg-slate-50 transition-colors disabled:opacity-50"
                 >
-                  {isLoggingOut ? "..." : "Logout"}
+                  {isLoggingOut ? "..." : "Sign Out"}
                 </button>
               </div>
             ) : (
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1.5">
                 <Link
                   href="/login"
-                  className="rounded-xl px-3 py-1.5 text-xs font-semibold text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-100 transition-colors"
+                  className="rounded-md px-3 py-1.5 text-xs font-medium text-slate-700 hover:text-slate-900 transition-colors"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
-                  className="rounded-xl bg-indigo-600 px-3 py-1.5 text-xs font-semibold text-white shadow-2xs hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-600 transition-all"
+                  className="rounded-md bg-slate-900 px-3 py-1.5 text-xs font-semibold text-white shadow-2xs hover:bg-slate-800 transition-colors"
                 >
                   Register
                 </Link>
@@ -211,31 +196,31 @@ export default function Navbar({
             )}
           </div>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu toggle */}
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="rounded-lg p-2 text-zinc-600 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-zinc-800 md:hidden"
-            aria-label="Toggle menu"
+            className="rounded-md p-1.5 text-slate-600 hover:bg-slate-100 md:hidden"
+            aria-label="Toggle navigation menu"
           >
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              {mobileMenuOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              ) : (
+            {mobileMenuOpen ? (
+              <IconX className="h-5 w-5" />
+            ) : (
+              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+              </svg>
+            )}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Dropdown */}
+      {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="border-t border-zinc-200 bg-white px-4 py-3 dark:border-zinc-800 dark:bg-zinc-950 md:hidden space-y-2">
+        <div className="border-t border-slate-200 bg-[#fbfbfa] px-4 py-3 md:hidden space-y-2">
           {user && (
-            <div className="flex items-center justify-between pb-2 border-b border-zinc-100 dark:border-zinc-800 text-xs">
-              <span className="font-semibold text-zinc-800 dark:text-zinc-200">{user.name}</span>
-              <span className="rounded-md bg-zinc-100 px-1.5 py-0.5 font-bold text-[10px] text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-200 text-xs">
+              <span className="font-semibold text-slate-900">{user.name}</span>
+              <span className="rounded bg-slate-100 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-slate-700">
                 {user.role}
               </span>
             </div>
@@ -247,19 +232,9 @@ export default function Navbar({
               setMobileMenuOpen(false);
               if (onSectionSelect) onSectionSelect("explore");
             }}
-            className="block rounded-lg px-3 py-2 text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+            className="block rounded-md px-3 py-2 text-xs font-medium text-slate-800 hover:bg-slate-100"
           >
-            Home
-          </Link>
-          <Link
-            href="/#browse"
-            onClick={() => {
-              setMobileMenuOpen(false);
-              if (onSectionSelect) onSectionSelect("explore");
-            }}
-            className="block rounded-lg px-3 py-2 text-sm font-semibold text-zinc-800 dark:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-zinc-900"
-          >
-            Browse Properties
+            Marketplace Listings
           </Link>
           <button
             type="button"
@@ -271,19 +246,21 @@ export default function Navbar({
                 router.push("/#semantic");
               }
             }}
-            className="w-full text-left rounded-lg px-3 py-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+            className="w-full text-left rounded-md px-3 py-2 text-xs font-medium text-slate-800 hover:bg-slate-100 flex items-center gap-2"
           >
-            ✨ AI Semantic Search
+            <IconSparkles className="w-3.5 h-3.5 text-slate-700" />
+            <span>Semantic Vector Search</span>
           </button>
           <Link
             href="/admin"
             onClick={() => setMobileMenuOpen(false)}
-            className="block rounded-lg px-3 py-2 text-sm font-semibold text-amber-600 dark:text-amber-400 hover:bg-zinc-100 dark:hover:bg-zinc-900"
+            className="block rounded-md px-3 py-2 text-xs font-medium text-slate-800 hover:bg-slate-100 flex items-center gap-2"
           >
-            ⚠️ Admin Anomaly Radar
+            <IconShieldAlert className="w-3.5 h-3.5 text-amber-600" />
+            <span>Anomaly Audit Console</span>
           </Link>
 
-          <div className="pt-2 border-t border-zinc-100 dark:border-zinc-800 flex flex-col gap-2">
+          <div className="pt-2 border-t border-slate-200 flex flex-col gap-2">
             {user ? (
               <button
                 type="button"
@@ -291,23 +268,23 @@ export default function Navbar({
                   setMobileMenuOpen(false);
                   handleLogout();
                 }}
-                className="w-full text-left rounded-lg px-3 py-2 text-sm font-semibold text-red-600 hover:bg-red-50 dark:hover:bg-red-950/30"
+                className="w-full text-left rounded-md px-3 py-2 text-xs font-medium text-rose-700 hover:bg-rose-50"
               >
-                Log Out
+                Sign Out
               </button>
             ) : (
               <div className="flex gap-2 pt-1">
                 <Link
                   href="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex-1 text-center rounded-xl border border-zinc-200 py-2 text-xs font-semibold text-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
+                  className="flex-1 text-center rounded-md border border-slate-200 bg-white py-2 text-xs font-medium text-slate-800"
                 >
                   Sign In
                 </Link>
                 <Link
                   href="/register"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex-1 text-center rounded-xl bg-indigo-600 py-2 text-xs font-semibold text-white"
+                  className="flex-1 text-center rounded-md bg-slate-900 py-2 text-xs font-semibold text-white"
                 >
                   Register
                 </Link>

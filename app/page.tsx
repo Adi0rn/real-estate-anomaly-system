@@ -7,6 +7,7 @@ import PropertyCard from "@/components/PropertyCard";
 import PropertyDetailModal from "@/components/PropertyDetailModal";
 import DatabaseNotice from "@/components/DatabaseNotice";
 import { Property, SearchResult, FilterState } from "@/types";
+import { IconSparkles, IconBuilding } from "@/components/icons";
 
 const initialFilters: FilterState = {
   city: "",
@@ -64,7 +65,7 @@ export default function Home() {
     }
   }, [filters]);
 
-  // Fetch semantic search using /api/search (only supported filters: city, propertyType, minPrice, maxPrice, bedrooms)
+  // Fetch semantic search using /api/search (supported filters: city, propertyType, minPrice, maxPrice, bedrooms)
   const executeSemanticSearch = useCallback(async (queryText: string, currentFilters = filters) => {
     if (!queryText.trim()) {
       setActiveMode("explore");
@@ -176,8 +177,8 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-50">
-      {/* Header & Navigation */}
+    <div className="min-h-screen bg-[#fbfbfa] text-slate-900">
+      {/* Institutional Top Navbar */}
       <Navbar
         isDbConnected={isDbConnected}
         activeSection={activeMode}
@@ -188,55 +189,44 @@ export default function Home() {
         }}
       />
 
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10 space-y-10">
-        {/* Hero Section */}
-        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-zinc-900 via-indigo-950 to-zinc-900 px-6 py-12 sm:px-12 sm:py-16 text-white shadow-xl">
-          <div className="absolute right-0 top-0 -mt-16 -mr-16 h-96 w-96 rounded-full bg-indigo-500/15 blur-3xl pointer-events-none" />
-          <div className="absolute left-1/3 bottom-0 -mb-16 h-72 w-72 rounded-full bg-violet-600/10 blur-3xl pointer-events-none" />
-
-          <div className="relative z-10 max-w-3xl">
-            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold backdrop-blur-md border border-white/10 text-indigo-200 mb-4">
-              <span>🛡️</span> Real-Estate Valuation & Anomaly Detection System
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 space-y-6">
+        {/* Editorial Page Header */}
+        <div className="border-b border-slate-200/90 pb-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
+                <IconBuilding className="w-3.5 h-3.5 text-slate-700" />
+                <span>Market Directory & Valuation System</span>
+              </div>
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
+                Institutional Real Estate Index
+              </h1>
+              <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
+                Browse verified residential and commercial assets with automated benchmark pricing audit. Flag statistical anomalies against comparable market median metrics.
+              </p>
             </div>
 
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-              Discover Verified Homes. <br />
-              <span className="bg-gradient-to-r from-indigo-300 via-violet-200 to-indigo-100 bg-clip-text text-transparent">
-                Flag Statistical Pricing Outliers.
-              </span>
-            </h1>
-
-            <p className="mt-4 text-sm sm:text-base text-zinc-300 leading-relaxed max-w-2xl">
-              Query properties using natural language semantic similarity or structured local filters. Every listing is audited against comparable local market valuation to detect anomalies.
-            </p>
-
-            {/* Hero Quick Search Bar */}
-            <form
-              onSubmit={handleSearchSubmit}
-              className="mt-8 flex flex-col sm:flex-row gap-2.5 max-w-2xl bg-white/10 p-2 rounded-2xl backdrop-blur-md border border-white/15"
-            >
-              <div className="relative flex-1">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="Find a peaceful 3-bedroom villa near parks in Bangalore..."
-                  className="w-full rounded-xl bg-white/90 px-4 py-3 text-sm text-zinc-900 placeholder:text-zinc-500 outline-none focus:bg-white focus:ring-2 focus:ring-indigo-400 dark:bg-zinc-800/90 dark:text-zinc-50 dark:placeholder:text-zinc-400"
-                />
+            {/* Quick KPI Strip */}
+            <div className="flex items-center gap-4 text-xs font-mono tabular-nums border border-slate-200 bg-white px-3.5 py-2 rounded-md shadow-2xs self-start md:self-auto">
+              <div>
+                <span className="block text-[10px] uppercase font-sans text-slate-400">Tracked Units</span>
+                <span className="font-semibold text-slate-900">{isDbConnected ? "100" : "—"}</span>
               </div>
-
-              <button
-                type="submit"
-                className="rounded-xl bg-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-md hover:bg-indigo-500 transition-colors shrink-0 flex items-center justify-center gap-2"
-              >
-                <span>✨</span>
-                <span>Search</span>
-              </button>
-            </form>
+              <div className="h-6 w-px bg-slate-200" />
+              <div>
+                <span className="block text-[10px] uppercase font-sans text-slate-400">Audit Alerts</span>
+                <span className="font-semibold text-amber-700">{isDbConnected ? "7 Flagged" : "—"}</span>
+              </div>
+              <div className="h-6 w-px bg-slate-200" />
+              <div>
+                <span className="block text-[10px] uppercase font-sans text-slate-400">Embedding Engine</span>
+                <span className="font-semibold text-slate-700">MiniLM-L6</span>
+              </div>
+            </div>
           </div>
-        </section>
+        </div>
 
-        {/* Database Offline Notice */}
+        {/* Database Notice if disconnected */}
         {isDbConnected === false && (
           <DatabaseNotice
             errorMessage={error || undefined}
@@ -248,8 +238,8 @@ export default function Home() {
           />
         )}
 
-        {/* Search & Filter Controls Section */}
-        <section id="semantic" className="scroll-mt-24">
+        {/* Unified Search & Filters Bar */}
+        <section id="semantic" className="scroll-mt-20">
           <SearchFilters
             searchQuery={searchQuery}
             onSearchQueryChange={setSearchQuery}
@@ -263,46 +253,44 @@ export default function Home() {
           />
         </section>
 
-        {/* Properties Browsing Section */}
-        <section id="browse" className="scroll-mt-24 space-y-5">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 border-b border-zinc-200 pb-3 dark:border-zinc-800">
-            <div>
-              <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 flex items-center gap-2">
-                <span>{activeMode === "semantic" ? "✨ AI Semantic Matches" : "🏠 Available Properties"}</span>
+        {/* Listings Section */}
+        <section id="browse" className="scroll-mt-20 space-y-4">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-200 pb-3">
+            <div className="flex items-baseline gap-2">
+              <h2 className="text-base font-bold text-slate-900">
+                {activeMode === "semantic" ? "Semantic Vector Matches" : "Active Market Inventory"}
               </h2>
-              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
-                {activeMode === "semantic"
-                  ? `${searchResults.length} property matches ordered by 384-dimensional cosine similarity`
-                  : `${properties.length} active listings matching current filters`}
-              </p>
+              <span className="text-xs text-slate-500 font-mono tabular-nums">
+                ({activeMode === "semantic" ? searchResults.length : properties.length} properties)
+              </span>
             </div>
 
             {activeMode === "semantic" && (
               <button
                 type="button"
                 onClick={() => handleToggleMode(false)}
-                className="text-xs font-semibold text-indigo-600 dark:text-indigo-400 hover:underline self-start sm:self-auto"
+                className="text-xs font-medium text-slate-600 hover:text-slate-900 underline self-start sm:self-auto"
               >
-                Switch to Standard Browsing →
+                Return to standard listings view
               </button>
             )}
           </div>
 
           {/* Loading Skeleton */}
           {isLoading && (
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div
                   key={i}
-                  className="h-72 animate-pulse rounded-2xl border border-zinc-200 bg-white p-5 dark:border-zinc-800 dark:bg-zinc-900"
+                  className="overflow-hidden rounded-lg border border-slate-200 bg-white"
                 >
-                  <div className="flex justify-between mb-4">
-                    <div className="h-4 w-20 rounded bg-zinc-200 dark:bg-zinc-800" />
-                    <div className="h-4 w-16 rounded bg-zinc-200 dark:bg-zinc-800" />
+                  <div className="aspect-[16/10] w-full animate-pulse bg-slate-200" />
+                  <div className="p-4 space-y-3">
+                    <div className="h-5 w-24 animate-pulse rounded bg-slate-200" />
+                    <div className="h-4 w-3/4 animate-pulse rounded bg-slate-200" />
+                    <div className="h-3 w-1/2 animate-pulse rounded bg-slate-100" />
+                    <div className="h-6 w-full animate-pulse rounded bg-slate-100 pt-2" />
                   </div>
-                  <div className="h-6 w-3/4 rounded bg-zinc-200 dark:bg-zinc-800 mb-2" />
-                  <div className="h-4 w-1/2 rounded bg-zinc-100 dark:bg-zinc-850 mb-8" />
-                  <div className="h-12 w-full rounded bg-zinc-100 dark:bg-zinc-850" />
                 </div>
               ))}
             </div>
@@ -313,7 +301,7 @@ export default function Home() {
             <>
               {activeMode === "semantic" ? (
                 searchResults.length > 0 ? (
-                  <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                     {searchResults.map((result) => (
                       <PropertyCard
                         key={result.propertyId}
@@ -324,22 +312,24 @@ export default function Home() {
                     ))}
                   </div>
                 ) : (
-                  <div className="rounded-3xl border border-zinc-200 bg-white p-12 text-center dark:border-zinc-800 dark:bg-zinc-900">
-                    <span className="text-4xl">🔍</span>
-                    <h3 className="mt-3 text-base font-bold text-zinc-900 dark:text-zinc-50">
+                  <div className="rounded-lg border border-slate-200 bg-white p-12 text-center">
+                    <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 mb-3">
+                      <IconSparkles className="h-5 w-5" />
+                    </div>
+                    <h3 className="text-sm font-semibold text-slate-900">
                       {searchQuery.trim()
-                        ? "No semantic matches found"
-                        : "Enter a query for semantic search"}
+                        ? "No semantic matches found for this query"
+                        : "Enter a prompt to run vector similarity search"}
                     </h3>
-                    <p className="mt-1 text-xs text-zinc-500 max-w-sm mx-auto leading-relaxed">
+                    <p className="mt-1 text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
                       {searchQuery.trim()
-                        ? "Try adjusting your query description or removing filter constraints."
-                        : "Describe the ideal property in plain text above, and the pgvector model will rank listings by semantic relevance."}
+                        ? "Try rephrasing your search or widening numeric filter constraints."
+                        : "Describe property features, location preferences, or design attributes in plain English."}
                     </p>
                   </div>
                 )
               ) : properties.length > 0 ? (
-                <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
                   {properties.map((property) => (
                     <PropertyCard
                       key={property.propertyId}
@@ -349,25 +339,27 @@ export default function Home() {
                   ))}
                 </div>
               ) : (
-                <div className="rounded-3xl border border-zinc-200 bg-white p-12 text-center dark:border-zinc-800 dark:bg-zinc-900">
-                  <span className="text-4xl">🏠</span>
-                  <h3 className="mt-3 text-base font-bold text-zinc-900 dark:text-zinc-50">
+                <div className="rounded-lg border border-slate-200 bg-white p-12 text-center">
+                  <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-600 mb-3">
+                    <IconBuilding className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-sm font-semibold text-slate-900">
                     {isDbConnected === false
                       ? "Database Offline"
-                      : "No listings match your criteria"}
+                      : "No properties match the selected criteria"}
                   </h3>
-                  <p className="mt-1 text-xs text-zinc-500 max-w-md mx-auto leading-relaxed">
+                  <p className="mt-1 text-xs text-slate-500 max-w-md mx-auto leading-relaxed">
                     {isDbConnected === false
-                      ? "The application requires a PostgreSQL connection string in DATABASE_URL to load real estate records."
-                      : "Try loosening your price boundaries, bedroom requirements, or city search filter."}
+                      ? "A valid PostgreSQL connection string is required in DATABASE_URL."
+                      : "Try clearing specific filters, widening the price range, or selecting all cities."}
                   </p>
                   {isDbConnected !== false && (
                     <button
                       type="button"
                       onClick={handleResetFilters}
-                      className="mt-4 rounded-xl bg-zinc-100 px-4 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-300"
+                      className="mt-4 rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 hover:bg-slate-50 transition-colors"
                     >
-                      Clear All Filters
+                      Reset All Filters
                     </button>
                   )}
                 </div>
@@ -377,7 +369,7 @@ export default function Home() {
         </section>
       </main>
 
-      {/* Quick View Modal */}
+      {/* Quick Spec Modal */}
       <PropertyDetailModal
         propertyId={selectedPropertyId}
         onClose={() => setSelectedPropertyId(null)}

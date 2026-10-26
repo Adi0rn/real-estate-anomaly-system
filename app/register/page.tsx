@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
+import { IconBuilding } from "@/components/icons";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -69,33 +70,33 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-zinc-50 font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-50">
+    <div className="min-h-screen bg-[#fbfbfa] text-slate-900 flex flex-col">
       <Navbar />
 
-      <main className="flex items-center justify-center px-4 py-16 sm:px-6">
-        <div className="mx-auto w-full max-w-md">
-          <div className="rounded-3xl border border-zinc-200 bg-white p-8 shadow-sm dark:border-zinc-800 dark:bg-zinc-900">
-            <div className="text-center mb-6">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950/60 dark:text-indigo-400 font-bold text-xl mb-3 shadow-2xs">
-                ✨
+      <main className="flex-1 flex items-center justify-center px-4 py-16 sm:px-6">
+        <div className="mx-auto w-full max-w-sm">
+          <div className="rounded-lg border border-slate-200/90 bg-white p-6 sm:p-8 shadow-2xs">
+            <div className="mb-6">
+              <div className="flex h-8 w-8 items-center justify-center rounded bg-slate-900 text-white mb-3">
+                <IconBuilding className="w-4 h-4 text-slate-100" />
               </div>
-              <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-                Create an Account
+              <h1 className="text-lg font-bold tracking-tight text-slate-950">
+                Register Platform Account
               </h1>
-              <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-                Join PropAnomaly to explore properties and save search preferences
+              <p className="mt-1 text-xs text-slate-500">
+                Join PropAudit to query market listings and valuation data
               </p>
             </div>
 
             {error && (
-              <div className="mb-5 rounded-xl border border-red-200 bg-red-50 p-3.5 text-xs text-red-800 dark:border-red-900/50 dark:bg-red-950/30 dark:text-red-300">
+              <div className="mb-4 rounded border border-rose-200 bg-rose-50 p-2.5 text-xs text-rose-800">
                 {error}
               </div>
             )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1.5">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                   Full Name
                 </label>
                 <input
@@ -104,12 +105,12 @@ export default function RegisterPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Arjun Mehta"
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50"
+                  className="w-full rounded border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs sm:text-sm text-slate-900 outline-none focus:border-slate-800 focus:bg-white"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1.5">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                   Email Address
                 </label>
                 <input
@@ -118,12 +119,12 @@ export default function RegisterPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="arjun@example.com"
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50"
+                  className="w-full rounded border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs sm:text-sm text-slate-900 outline-none focus:border-slate-800 focus:bg-white"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1.5">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                   Password (min 8 characters)
                 </label>
                 <input
@@ -133,12 +134,12 @@ export default function RegisterPage() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50"
+                  className="w-full rounded border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs sm:text-sm text-slate-900 outline-none focus:border-slate-800 focus:bg-white font-mono"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold text-zinc-700 dark:text-zinc-300 mb-1.5">
+                <label className="block text-[11px] font-semibold uppercase tracking-wider text-slate-600 mb-1">
                   Confirm Password
                 </label>
                 <input
@@ -148,22 +149,19 @@ export default function RegisterPage() {
                   value={confirmPassword}
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   placeholder="••••••••"
-                  className="w-full rounded-xl border border-zinc-200 bg-zinc-50 px-3.5 py-2.5 text-sm text-zinc-900 outline-none transition-all focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-500/20 dark:border-zinc-700 dark:bg-zinc-800 dark:text-zinc-50"
+                  className="w-full rounded border border-slate-200 bg-slate-50/50 px-3 py-2 text-xs sm:text-sm text-slate-900 outline-none focus:border-slate-800 focus:bg-white font-mono"
                 />
               </div>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full rounded-xl bg-indigo-600 py-3 text-sm font-semibold text-white shadow-xs hover:bg-indigo-700 disabled:opacity-50 transition-all dark:bg-indigo-500 dark:hover:bg-indigo-600 flex items-center justify-center gap-2"
+                className="w-full rounded bg-slate-900 py-2.5 text-xs font-semibold text-white shadow-xs hover:bg-slate-800 disabled:opacity-50 transition-colors flex items-center justify-center gap-1.5"
               >
                 {loading ? (
                   <>
-                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                    </svg>
-                    Creating Account...
+                    <span className="h-3 w-3 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                    <span>Creating Account...</span>
                   </>
                 ) : (
                   "Create Account"
@@ -171,11 +169,11 @@ export default function RegisterPage() {
               </button>
             </form>
 
-            <div className="mt-6 border-t border-zinc-100 pt-5 text-center text-xs text-zinc-500 dark:border-zinc-800 dark:text-zinc-400">
-              Already have an account?{" "}
+            <div className="mt-6 border-t border-slate-100 pt-4 text-center text-xs text-slate-500">
+              Already registered?{" "}
               <Link
                 href="/login"
-                className="font-semibold text-indigo-600 hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300"
+                className="font-semibold text-slate-900 hover:underline"
               >
                 Sign in →
               </Link>

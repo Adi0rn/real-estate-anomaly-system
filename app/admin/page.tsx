@@ -8,6 +8,7 @@ import AnomalyRadar from "@/components/AnomalyRadar";
 import DatabaseNotice from "@/components/DatabaseNotice";
 import PropertyDetailModal from "@/components/PropertyDetailModal";
 import { AnomalyRecord } from "@/types";
+import { IconShieldAlert, IconLock } from "@/components/icons";
 
 type SafeUser = {
   userId: number;
@@ -133,7 +134,7 @@ export default function AdminPage() {
       }
 
       setReviewMessage({
-        text: `Anomaly #${anomalyId} successfully marked as ${decision}.`,
+        text: `Anomaly #${anomalyId} marked as ${decision}.`,
         type: "success",
       });
 
@@ -161,10 +162,10 @@ export default function AdminPage() {
   // Auth checking skeleton
   if (!authChecked) {
     return (
-      <div className="min-h-screen bg-zinc-50 font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-50 flex items-center justify-center">
+      <div className="min-h-screen bg-[#fbfbfa] text-slate-900 flex items-center justify-center">
         <div className="text-center">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-indigo-600 border-t-transparent mx-auto" />
-          <p className="mt-3 text-xs text-zinc-400">Verifying administrator credentials...</p>
+          <span className="h-6 w-6 animate-spin rounded-full border-2 border-slate-900 border-t-transparent inline-block" />
+          <p className="mt-3 text-xs text-slate-500 font-mono">Verifying administrative credentials...</p>
         </div>
       </div>
     );
@@ -173,33 +174,34 @@ export default function AdminPage() {
   // Non-admin view (role === "USER")
   if (user && user.role !== "ADMIN") {
     return (
-      <div className="min-h-screen bg-zinc-50 font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-50">
+      <div className="min-h-screen bg-[#fbfbfa] text-slate-900">
         <Navbar />
-        <main className="mx-auto max-w-2xl px-4 py-20 text-center">
-          <div className="rounded-3xl border border-red-200 bg-white p-10 shadow-xs dark:border-red-900/50 dark:bg-zinc-900">
-            <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-red-50 text-2xl text-red-600 dark:bg-red-950/50 dark:text-red-400 mb-4">
-              🚫
+        <main className="mx-auto max-w-xl px-4 py-24 text-center">
+          <div className="rounded-lg border border-slate-200 bg-white p-8 shadow-2xs">
+            <div className="mx-auto flex h-10 w-10 items-center justify-center rounded-full bg-slate-100 text-slate-700 mb-3">
+              <IconLock className="h-5 w-5" />
             </div>
-            <h1 className="text-xl font-bold text-zinc-900 dark:text-zinc-50">
-              Access Restricted to Administrators
+            <h1 className="text-base font-bold text-slate-900">
+              Administrator Privileges Required
             </h1>
-            <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400 max-w-md mx-auto leading-relaxed">
-              You are currently signed in as <strong>{user.email}</strong> with role{" "}
-              <span className="font-semibold text-zinc-700 dark:text-zinc-300">USER</span>.
-              Reviewing and managing pricing anomaly alerts requires an authenticated ADMIN role.
+            <p className="mt-2 text-xs text-slate-600 max-w-md mx-auto leading-relaxed">
+              Signed in as <strong>{user.email}</strong> with standard role{" "}
+              <span className="font-mono text-[11px] bg-slate-100 px-1 py-0.5 rounded text-slate-800">
+                {user.role}
+              </span>. Reviewing and confirming pricing anomalies requires an authenticated ADMIN account.
             </p>
-            <div className="mt-6 flex justify-center gap-3">
+            <div className="mt-6 flex justify-center gap-3 text-xs">
               <Link
                 href="/"
-                className="rounded-xl border border-zinc-200 px-4 py-2 text-xs font-semibold text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:text-zinc-300"
+                className="rounded-md border border-slate-300 bg-white px-3 py-1.5 font-medium text-slate-700 hover:bg-slate-50"
               >
-                Return Home
+                Return to Marketplace
               </Link>
               <Link
                 href="/login?redirect=/admin"
-                className="rounded-xl bg-indigo-600 px-4 py-2 text-xs font-semibold text-white shadow-xs hover:bg-indigo-700"
+                className="rounded-md bg-slate-900 px-3 py-1.5 font-semibold text-white hover:bg-slate-800"
               >
-                Sign In with Admin Account
+                Switch Account
               </Link>
             </div>
           </div>
@@ -210,60 +212,62 @@ export default function AdminPage() {
 
   // Admin view
   return (
-    <div className="min-h-screen bg-zinc-50 font-sans text-zinc-900 antialiased dark:bg-zinc-950 dark:text-zinc-50">
+    <div className="min-h-screen bg-[#fbfbfa] text-slate-900">
       <Navbar isDbConnected={isDbConnected} />
 
-      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 sm:py-10">
-        <div className="space-y-6">
-          {/* Admin Header */}
-          <div className="rounded-3xl bg-zinc-900 px-6 py-8 sm:px-8 sm:py-10 text-white shadow-md relative overflow-hidden dark:bg-zinc-900 dark:border dark:border-zinc-800">
-            <div className="max-w-2xl">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="rounded-md bg-amber-500/20 px-2 py-0.5 text-xs font-bold text-amber-400 border border-amber-500/30">
-                  Administrator Console
-                </span>
-                <span className="text-xs text-zinc-400">Authenticated: {user?.name} ({user?.email})</span>
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 space-y-6">
+        {/* Admin Header */}
+        <div className="border-b border-slate-200/90 pb-6">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+            <div>
+              <div className="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1.5">
+                <IconShieldAlert className="w-3.5 h-3.5 text-amber-600" />
+                <span>Auditing Console • Authenticated Admin</span>
               </div>
-              <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight">
+              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
                 Statistical Pricing Anomaly Review
               </h1>
-              <p className="mt-2 text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                Review flagged outliers where property pricing deviates significantly from the median of local comparable listings. As an authenticated administrator, you can confirm valid anomalies or dismiss false positives.
+              <p className="mt-1 text-xs sm:text-sm text-slate-600 max-w-2xl leading-relaxed">
+                Supervise automated pricing valuation anomalies. Confirm valid market discrepancies or dismiss false positive alerts generated by machine learning benchmarks.
               </p>
             </div>
+
+            <div className="rounded border border-slate-200 bg-white px-3 py-1.5 text-xs text-slate-600 shadow-2xs self-start md:self-auto font-mono">
+              <span className="text-slate-400">Auditor:</span> {user?.name} ({user?.email})
+            </div>
           </div>
+        </div>
 
-          {/* Database Notice */}
-          {isDbConnected === false && (
-            <DatabaseNotice
-              errorMessage={error || undefined}
-              onRetry={() => {
-                setIsLoading(true);
-                fetchAnomalies();
-              }}
-              isRetrying={isLoading}
-            />
-          )}
-
-          {/* Anomaly Radar with Live Review Actions */}
-          <AnomalyRadar
-            anomalies={anomalies}
-            isLoading={isLoading}
-            error={error}
-            onSelectProperty={(id) => setSelectedPropertyId(id)}
-            onRefresh={() => {
+        {/* Database Notice */}
+        {isDbConnected === false && (
+          <DatabaseNotice
+            errorMessage={error || undefined}
+            onRetry={() => {
               setIsLoading(true);
               fetchAnomalies();
             }}
-            isAdmin={true}
-            onReviewAnomaly={handleReviewAnomaly}
-            isReviewingId={isReviewingId}
-            reviewMessage={reviewMessage}
+            isRetrying={isLoading}
           />
-        </div>
+        )}
+
+        {/* Anomaly Radar with Live Review Actions */}
+        <AnomalyRadar
+          anomalies={anomalies}
+          isLoading={isLoading}
+          error={error}
+          onSelectProperty={(id) => setSelectedPropertyId(id)}
+          onRefresh={() => {
+            setIsLoading(true);
+            fetchAnomalies();
+          }}
+          isAdmin={true}
+          onReviewAnomaly={handleReviewAnomaly}
+          isReviewingId={isReviewingId}
+          reviewMessage={reviewMessage}
+        />
       </main>
 
-      {/* Property Details Modal */}
+      {/* Property Details Quick Modal */}
       <PropertyDetailModal
         propertyId={selectedPropertyId}
         onClose={() => setSelectedPropertyId(null)}
