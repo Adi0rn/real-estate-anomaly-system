@@ -103,3 +103,112 @@ export type FilterState = {
   maxPrice: string;
   bedrooms: string;
 };
+
+// -----------------------------------------------------------------------------
+// Level 3 DBMS Analytics Types
+// -----------------------------------------------------------------------------
+
+export type AnomalyReviewJoinRow = {
+  anomalyId: number;
+  propertyId: number;
+  expectedPrice: string;
+  actualPrice: string;
+  priceDifference: string;
+  anomalyScore: string;
+  reason: string;
+  anomalyStatus: string;
+  detectedAt: string;
+  reviewedAt: string | null;
+  propertyTitle: string;
+  propertyType: string;
+  listingType: string;
+  city: string;
+  state: string;
+  areaSqft: number;
+  bedrooms: number;
+  bathrooms: number;
+  propertyStatus: string;
+  ownerId: number;
+  ownerName: string;
+  ownerEmail: string;
+  reviewerId: number | null;
+  reviewerName: string | null;
+  reviewerEmail: string | null;
+};
+
+export type CityTypeAggregateRow = {
+  city: string;
+  propertyType: string;
+  propertyCount: number;
+  avgPrice: string;
+  minPrice: string;
+  maxPrice: string;
+  avgPricePerSqft: string;
+  avgAreaSqft: string;
+};
+
+export type PeerGroupZScoreRow = {
+  propertyId: number;
+  title: string;
+  city: string;
+  propertyType: string;
+  listingType: string;
+  price: string;
+  areaSqft: number;
+  bedrooms: number;
+  pricePerSqft: string;
+  peerAvgPricePerSqft: string;
+  peerStdDevPricePerSqft: string;
+  peerCount: number;
+  zScore: string;
+  classification: "HIGH_OUTLIER" | "LOW_OUTLIER" | "MODERATE_HIGH" | "MODERATE_LOW" | "TYPICAL";
+};
+
+export type PriceHistoryLagRow = {
+  priceId: number;
+  propertyId: number;
+  propertyTitle: string;
+  city: string;
+  propertyType: string;
+  currentPrice: string;
+  previousPrice: string;
+  priceDifference: string;
+  percentChange: string;
+  recordedAt: string;
+  previousRecordedAt: string | null;
+};
+
+export type CorrelatedSubqueryExcessRow = {
+  propertyId: number;
+  title: string;
+  city: string;
+  propertyType: string;
+  actualPrice: string;
+  areaSqft: number;
+  bedrooms: number;
+  peerGroupAvgPrice: string;
+  excessAmount: string;
+  excessPercentage: string;
+};
+
+export type PropertyDashboardSummaryRow = {
+  propertyId: number;
+  title: string;
+  propertyType: string;
+  listingType: string;
+  price: string;
+  areaSqft: number;
+  bedrooms: number;
+  bathrooms: number;
+  city: string;
+  state: string;
+  propertyStatus: string;
+  ownerId: number;
+  ownerName: string;
+  ownerEmail: string;
+  priceHistoryCount: number;
+  latestPriceDate: string | null;
+  amenityCount: number;
+  anomalyStatus: string;
+  anomalyScore: string | null;
+};

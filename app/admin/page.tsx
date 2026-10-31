@@ -5,10 +5,11 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import AnomalyRadar from "@/components/AnomalyRadar";
+import DbmsAnalyticsConsole from "@/components/DbmsAnalyticsConsole";
 import DatabaseNotice from "@/components/DatabaseNotice";
 import PropertyDetailModal from "@/components/PropertyDetailModal";
 import { AnomalyRecord } from "@/types";
-import { IconShieldAlert, IconLock } from "@/components/icons";
+import { IconShieldAlert, IconLock, IconBuilding } from "@/components/icons";
 
 type SafeUser = {
   userId: number;
@@ -27,6 +28,7 @@ export default function AdminPage() {
   const [error, setError] = useState<string | null>(null);
   const [isDbConnected, setIsDbConnected] = useState<boolean | null>(null);
   const [selectedPropertyId, setSelectedPropertyId] = useState<number | null>(null);
+  const [adminConsoleMode, setAdminConsoleMode] = useState<"anomalies" | "dbms-analytics">("anomalies");
 
   // Review action state
   const [isReviewingId, setIsReviewingId] = useState<number | null>(null);
@@ -257,21 +259,61 @@ export default function AdminPage() {
           />
         )}
 
+        {/* Console Mode Selector */}
+        <div className="flex items-center gap-2 border-b border-slate-200 dark:border-[#30363d] pb-2">
+          <button
+            type="button"
+            onClick={() => setAdminConsoleMode("anomalies")}
+            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
+              adminConsoleMode === "anomalies"
+                ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-2xs"
+                : "text-slate-600 dark:text-[#a1a8b0] hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#202428]"
+            }`}
+          >
+            <IconShieldAlert className="w-3.5 h-3.5" />
+            <span>Pricing Anomaly Audit Queue</span>
+            <span className="font-mono text-[10px] bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 px-1.5 py-0.2 rounded">
+              {anomalies.length}
+            </span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setAdminConsoleMode("dbms-analytics")}
+            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
+              adminConsoleMode === "dbms-analytics"
+                ? "bg-indigo-600 dark:bg-indigo-500 text-white shadow-2xs"
+                : "text-slate-600 dark:text-[#a1a8b0] hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#202428]"
+            }`}
+          >
+            <IconBuilding className="w-3.5 h-3.5" />
+            <span>Level 3 DBMS Relational Analytics</span>
+            <span className="font-mono text-[10px] bg-indigo-700 dark:bg-indigo-600 text-white px-1.5 py-0.2 rounded uppercase">
+              SQL Engine
+            </span>
+          </button>
+        </div>
+
         {/* Anomaly Radar with Live Review Actions */}
-        <AnomalyRadar
-          anomalies={anomalies}
-          isLoading={isLoading}
-          error={error}
-          onSelectProperty={(id) => setSelectedPropertyId(id)}
-          onRefresh={() => {
-            setIsLoading(true);
-            fetchAnomalies();
-          }}
-          isAdmin={true}
-          onReviewAnomaly={handleReviewAnomaly}
-          isReviewingId={isReviewingId}
-          reviewMessage={reviewMessage}
-        />
+        {adminConsoleMode === "anomalies" && (
+          <AnomalyRadar
+            anomalies={anomalies}
+            isLoading={isLoading}
+            error={error}
+            onSelectProperty={(id) => setSelectedPropertyId(id)}
+            onRefresh={() => {
+              setIsLoading(true);
+              fetchAnomalies();
+            }}
+            isAdmin={true}
+            onReviewAnomaly={handleReviewAnomaly}
+            isReviewingId={isReviewingId}
+            reviewMessage={reviewMessage}
+          />
+        )}
+
+        {/* Level 3 DBMS Analytics Console */}
+        {adminConsoleMode === "dbms-analytics" && <DbmsAnalyticsConsole />}
       </main>
 
       {/* Property Details Quick Modal */}

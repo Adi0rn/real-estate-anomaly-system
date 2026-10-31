@@ -3,6 +3,8 @@ import {
   getPropertyImage,
   getPropertyGallery,
   getPropertyFallback,
+  formatINR,
+  calculateSyntheticMonthlyRent,
 } from "../src/lib/property-images";
 
 type SearchResultItem = {
@@ -278,6 +280,57 @@ async function runTests() {
     }
   }
   assert(deterministic, "Photo assignments are 100% deterministic (zero random variation)");
+
+  // ---------------------------------------------------------------------------
+  // 4. SALE vs RENT Price Formatting Semantics
+  // ---------------------------------------------------------------------------
+  console.log("\n[4] Testing SALE vs RENT Price Formatting Semantics:");
+
+  // 4.1: SALE formatting
+  const saleCr = formatINR(12800000, true, "SALE");
+  assert(saleCr === "₹1.28 Cr", 'SALE price 1.28 Cr formats as "₹1.28 Cr"');
+
+  const saleLakh = formatINR(7400000, true, "SALE");
+  assert(saleLakh === "₹74.00 L", 'SALE price 74 Lakhs formats as "₹74.00 L"');
+
+  // 4.2: Standard RENT formatting
+  const rentStandard = formatINR(35000, true, "RENT");
+  assert(rentStandard === "₹35,000", 'RENT price 35,000 formats as "₹35,000"');
+
+  const rentLuxury = formatINR(114500, true, "RENT");
+  assert(rentLuxury === "₹1,14,500", 'RENT price 1,14,500 formats as "₹1,14,500"');
+
+  // 4.3: Frontend Validation Guard against purchase valuations passed to RENT
+  const rentSafeguardLakh = formatINR(9442500, true, "RENT");
+  assert(
+    rentSafeguardLakh === "Price on Request",
+    'Legacy 94.42 L valuation under RENT safely reports "Price on Request" without silent alternative guessing'
+  );
+
+  const rentSafeguardCr = formatINR(21220000, true, "RENT");
+  assert(
+    rentSafeguardCr === "Price on Request",
+    'Legacy 2.12 Cr valuation under RENT safely reports "Price on Request"'
+  );
+
+  // 4.4: Authoritative Synthetic Rental Model Verification
+  const rentCalcMumbai = calculateSyntheticMonthlyRent({
+    city: "Mumbai",
+    propertyType: "APARTMENT",
+    bedrooms: 2,
+    areaSqft: 1000,
+  });
+  // (45 + 2*2) * 1.0 * 1000 = 49000
+  assert(rentCalcMumbai === 49000, "Authoritative rent model computes 49,000 for 1000 sqft 2BHK Mumbai Apartment");
+
+  const rentCalcBangalore = calculateSyntheticMonthlyRent({
+    city: "Bangalore",
+    propertyType: "VILLA",
+    bedrooms: 3,
+    areaSqft: 2000,
+  });
+  // (30 + 3*2) * 1.20 * 2000 = 36 * 1.20 * 2000 = 86400 -> rounded to 86500
+  assert(rentCalcBangalore === 86500, "Authoritative rent model computes 86,500 for 2000 sqft 3BHK Bangalore Villa");
 
   // ---------------------------------------------------------------------------
   // Summary

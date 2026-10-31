@@ -2,6 +2,7 @@ import "dotenv/config";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { PrismaClient } from "../src/generated/prisma/client";
 import { hashPassword } from "../src/lib/auth-crypto";
+import { calculateSyntheticMonthlyRent } from "../src/lib/property-images";
 
 const connectionString = process.env.DATABASE_URL!;
 
@@ -217,23 +218,54 @@ async function main() {
     const propertyType = propertyTypes[i % propertyTypes.length];
     const listingType = listingTypes[i % listingTypes.length];
 
-    const cityMultiplier: Record<string, number> = {
-      Mumbai: 18000,
-      Bangalore: 11000,
-      Chennai: 7500,
-      Hyderabad: 6500,
-      Pune: 8500,
-    };
+    // -------------------------------------------------------------------------
+    // Synthetic Price Modeling: Explicit SALE vs RENT Semantics
+    // -------------------------------------------------------------------------
+    // DISCLAIMER: The parameters below are synthetic benchmark heuristics designed
+    // solely for demonstration, testing, and anomaly detection algorithms. They do
+    // NOT represent verified live market transactions or real estate appraisals.
+    // -------------------------------------------------------------------------
 
-    const pricePerSqft = cityMultiplier[location.city] + bedrooms * 500;
-    let price = areaSqft * pricePerSqft;
+    let price = 0;
 
-    if (i % 20 === 0) {
-      price *= 1.8;
-    }
+    if (listingType === "SALE") {
+      // SALE: Stores Total Capital Acquisition / Purchase Price
+      const saleCityBasePerSqft: Record<string, number> = {
+        Mumbai: 18000,
+        Bangalore: 11000,
+        Pune: 8500,
+        Chennai: 7500,
+        Hyderabad: 6500,
+      };
 
-    if (i % 33 === 0) {
-      price *= 0.55;
+      const saleTypeMultiplier: Record<string, number> = {
+        APARTMENT: 1.0,
+        HOUSE: 1.1,
+        VILLA: 1.25,
+      };
+
+      const baseRate = saleCityBasePerSqft[location.city] || 8000;
+      const typeMult = saleTypeMultiplier[propertyType] || 1.0;
+      const configBonus = bedrooms * 500;
+      const purchasePricePerSqft = (baseRate + configBonus) * typeMult;
+
+      price = areaSqft * purchasePricePerSqft;
+
+      // Intentional Outliers for Anomaly Detection Suite
+      if (i % 20 === 0) price *= 1.8; // +80% overpriced outlier
+      if (i % 33 === 0) price *= 0.55; // -45% underpriced outlier
+
+      price = Math.round(price);
+    } else {
+      // RENT: Stores Monthly Rental Price in INR (₹ / month)
+      // Authoritative unified calculation based on city base rate, property type, area & bedrooms
+      price = calculateSyntheticMonthlyRent({
+        city: location.city,
+        propertyType,
+        bedrooms,
+        areaSqft,
+        propertyId: i + 1,
+      });
     }
 
     const owner = createdUsers[i % createdUsers.length];

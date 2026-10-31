@@ -141,9 +141,9 @@ export default function PropertyDetailModal({
 
                 <div className="text-right shrink-0">
                   <span className="text-xl font-bold tracking-tight text-slate-950 dark:text-white tabular-nums">
-                    {formatINR(detail.price)}
+                    {formatINR(detail.price, true, detail.listingType)}
                   </span>
-                  {detail.listingType === "RENT" && (
+                  {detail.listingType === "RENT" && !(detail.price && parseFloat(detail.price) >= 1000000) && (
                     <span className="text-xs text-slate-500 dark:text-[#a1a8b0] block">/ month</span>
                   )}
                 </div>

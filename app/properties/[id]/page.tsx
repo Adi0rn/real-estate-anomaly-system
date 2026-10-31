@@ -75,9 +75,14 @@ function PropertyDetailContent({ params }: PageProps) {
   };
 
   const galleryImages = getPropertyGallery(propertyId, detail?.propertyType);
-  const priceNum = detail?.price ? parseFloat(detail.price) : null;
+  const rawPriceNum = detail?.price ? parseFloat(detail.price) : null;
+  const isRent = detail?.listingType === "RENT";
+  // Validation: detect un-remediated purchase valuations passed as monthly rent
+  const isInvalidRentPrice = isRent && rawPriceNum !== null && rawPriceNum >= 1000000;
   const areaSqft = detail?.areaSqft;
-  const pricePerSqft = priceNum && areaSqft && areaSqft > 0 ? Math.round(priceNum / areaSqft) : null;
+  const pricePerSqft = !isInvalidRentPrice && rawPriceNum && areaSqft && areaSqft > 0
+    ? Math.round(rawPriceNum / areaSqft)
+    : null;
   const anomaly = detail?.anomalies && detail.anomalies.length > 0 ? detail.anomalies[0] : null;
 
   return (
@@ -199,15 +204,15 @@ function PropertyDetailContent({ params }: PageProps) {
               <div className="text-left md:text-right shrink-0">
                 <div className="flex items-baseline md:justify-end gap-1.5">
                   <span className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white font-sans tabular-nums">
-                    {formatINR(detail.price)}
+                    {formatINR(detail.price, true, detail.listingType)}
                   </span>
-                  {detail.listingType === "RENT" && (
+                  {detail.listingType === "RENT" && !isInvalidRentPrice && (
                     <span className="text-xs text-slate-500 dark:text-[#a1a8b0] font-medium">/ month</span>
                   )}
                 </div>
                 {pricePerSqft && (
                   <p className="text-xs font-mono text-slate-500 dark:text-[#a1a8b0] tabular-nums mt-0.5">
-                    ₹{pricePerSqft.toLocaleString("en-IN")} per sqft
+                    ₹{pricePerSqft.toLocaleString("en-IN")} {isRent ? "/ sqft / month" : "per sqft"}
                   </p>
                 )}
               </div>

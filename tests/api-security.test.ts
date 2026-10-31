@@ -22,11 +22,30 @@ test("API Security: Forged session cookie access to GET /api/anomalies is blocke
   assert.equal(data.success, false);
 });
 
-test("API Security: Unauthenticated access to PATCH /api/admin/anomalies/1/review is blocked", async () => {
+test("API Security: Unauthenticated access to GET /api/admin/anomalies/1/review is blocked", async () => {
   const res = await fetch(`${BASE_URL}/api/admin/anomalies/1/review`, {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ decision: "CONFIRMED" }),
+  });
+  assert.equal(res.status, 401, "Expected 401 Unauthorized");
+  const data = await res.json();
+  assert.equal(data.success, false);
+});
+
+test("API Security: Unauthenticated access to GET /api/admin/analytics is blocked", async () => {
+  const res = await fetch(`${BASE_URL}/api/admin/analytics`);
+  assert.equal(res.status, 401, "Expected 401 Unauthorized");
+  const data = await res.json();
+  assert.equal(data.success, false);
+  assert.match(data.error, /authentication required/i);
+});
+
+test("API Security: Forged session cookie access to GET /api/admin/analytics is blocked", async () => {
+  const res = await fetch(`${BASE_URL}/api/admin/analytics`, {
+    headers: {
+      Cookie: "prop_session=tampered.token.here",
+    },
   });
   assert.equal(res.status, 401, "Expected 401 Unauthorized");
   const data = await res.json();

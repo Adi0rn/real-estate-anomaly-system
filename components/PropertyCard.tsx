@@ -32,9 +32,14 @@ export default function PropertyCard({
   const [imageError, setImageError] = useState(false);
   const imageUrl = getPropertyImage(property.propertyId, property.propertyType);
 
-  const priceNum = property.price ? parseFloat(property.price) : null;
+  const rawPriceNum = property.price ? parseFloat(property.price) : null;
+  const isRent = property.listingType === "RENT";
+  // Validation: detect un-remediated purchase valuations passed as monthly rent
+  const isInvalidRentPrice = isRent && rawPriceNum !== null && rawPriceNum >= 1000000;
   const areaSqft = property.areaSqft;
-  const pricePerSqft = priceNum && areaSqft && areaSqft > 0 ? Math.round(priceNum / areaSqft) : null;
+  const pricePerSqft = !isInvalidRentPrice && rawPriceNum && areaSqft && areaSqft > 0
+    ? Math.round(rawPriceNum / areaSqft)
+    : null;
 
   return (
     <article className="group flex flex-col justify-between overflow-hidden rounded-lg border border-slate-200/90 dark:border-[#30363d] bg-white dark:bg-[#191c1f] transition-all duration-150 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-xs">
@@ -91,16 +96,16 @@ export default function PropertyCard({
           <div className="flex items-baseline justify-between gap-2">
             <div>
               <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-white tabular-nums font-sans">
-                {property.price ? formatINR(property.price, true) : "Price on Request"}
+                {property.price ? formatINR(property.price, true, property.listingType) : "Price on Request"}
               </span>
-              {property.listingType === "RENT" && (
+              {property.listingType === "RENT" && !isInvalidRentPrice && (
                 <span className="text-xs text-slate-500 dark:text-[#a1a8b0] font-normal ml-1">/ month</span>
               )}
             </div>
 
             {pricePerSqft && (
               <span className="text-[11px] font-mono tabular-nums text-slate-500 dark:text-[#a1a8b0]">
-                ₹{pricePerSqft.toLocaleString("en-IN")}/sqft
+                ₹{pricePerSqft.toLocaleString("en-IN")}{isRent ? "/sqft/mo" : "/sqft"}
               </span>
             )}
           </div>
