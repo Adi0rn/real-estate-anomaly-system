@@ -452,47 +452,172 @@ export interface PropertyDashboardSummaryRow {
 
 ---
 
-### Query G: ACID Atomic Price-Update Transaction Demonstration
+### Query G: ACID Atomic Price-Update Transaction & Trigger Audit
 
-- **DBMS Concept Demonstrated:** Relational transaction boundary (`db.$transaction`), row-level locking (`SELECT ... FOR UPDATE`), atomic consistency, and controlled rollback verification.
-- **PropAudit Business Purpose:** Demonstrates how critical financial operations—such as manual price revisions by an administrator—maintain ACID isolation. Guarantees that updating `Property.price` and recording an audit trail in `PriceHistory` happen atomically or not at all.
-- **Safety Guarantee:** By passing `simulateRollback: true`, the engine executes the locking and modification statements inside a transaction and triggers an intentional error (`ROLLBACK_DEMO_INTENTIONAL`). This verifies transaction semantics against the live database without mutating production data.
+- **DBMS Concept Demonstrated:** Relational transaction boundary (`db.$transaction`), row-level locking (`SELECT ... FOR UPDATE`), PostgreSQL trigger automation (`property_price_history_trigger`), atomic consistency, and controlled rollback verification.
+- **PropAudit Business Purpose:** Demonstrates how critical financial operations—such as manual price revisions by an administrator—maintain ACID isolation. When `Property.price` is updated, the PostgreSQL database trigger automatically records the audit trail in `PriceHistory` (without requiring manual duplicated application-level inserts).
+- **Safety Guarantee:** By passing `shouldRollback: true`, the engine executes the locking and modification statements inside a transaction and triggers an intentional error. Both the property update and the trigger-inserted audit row are cleanly rolled back together.
 - **TypeScript Engine Implementation:** [`src/lib/dbms-analytics.ts`](file:///c:/Users/abhyu/Documents/DBMS/miniproj/real-estate-anomaly-system/src/lib/dbms-analytics.ts) &rarr; `executeAtomicPriceUpdateTransaction()`
 - **Automated Verification:** [`tests/dbms-analytics.test.ts`](file:///c:/Users/abhyu/Documents/DBMS/miniproj/real-estate-anomaly-system/tests/dbms-analytics.test.ts)
 
 #### Transaction Execution Flow
 ```typescript
 await db.$transaction(async (tx) => {
-  // Step 1: Lock the target row to prevent concurrent race conditions
-  const locked = await tx.$queryRawUnsafe<Array<{ propertyId: number; price: number }>>(
-    `SELECT "propertyId", "price" FROM "Property" WHERE "propertyId" = $1 FOR UPDATE`,
-    propertyId
-  );
-  if (!locked.length) throw new Error("Property not found");
+  // Step 1: Lock target property row to prevent concurrent race conditions
+  const [locked] = await tx.$queryRaw<RawLockedPropertyRow[]>`
+    SELECT "propertyId", "price"::numeric FROM "Property"
+    WHERE "propertyId" = ${propertyId}
+    FOR UPDATE;
+  `;
+  if (!locked) throw new Error(`Property #${propertyId} does not exist.`);
 
-  const oldPrice = Number(locked[0].price);
+  const oldPrice = Number(locked.price);
 
-  // Step 2: Atomic update to the property table
-  await tx.$executeRawUnsafe(
-    `UPDATE "Property" SET "price" = $1, "updatedAt" = CURRENT_TIMESTAMP WHERE "propertyId" = $2`,
-    newPrice,
-    propertyId
-  );
+  // Step 2: Atomic update to Property table.
+  // The PostgreSQL trigger "property_price_history_trigger" executes AFTER UPDATE OF price
+  // and automatically inserts the audit record into "PriceHistory".
+  await tx.$executeRaw`
+    UPDATE "Property"
+    SET "price" = ${newPrice}, "updatedAt" = NOW()
+    WHERE "propertyId" = ${propertyId};
+  `;
 
-  // Step 3: Atomic audit recording in price history
-  await tx.$executeRawUnsafe(
-    `INSERT INTO "PriceHistory" ("propertyId", "price", "recordedAt", "source")
-     VALUES ($1, $2, CURRENT_TIMESTAMP, $3)`,
-    propertyId,
-    newPrice,
-    `ADMIN_ATOMIC_UPDATE: ${auditReason}`
-  );
+  // Step 3: Retrieve the trigger-created PriceHistory row inside the same transaction
+  const [triggerHistory] = await tx.$queryRaw<RawInsertedPriceHistoryRow[]>`
+    SELECT "priceId" FROM "PriceHistory"
+    WHERE "propertyId" = ${propertyId}
+    ORDER BY "recordedAt" DESC, "priceId" DESC
+    LIMIT 1;
+  `;
 
   // Step 4: Conditional intentional rollback for non-destructive testing
-  if (simulateRollback) {
-    throw new Error("ROLLBACK_DEMO_INTENTIONAL");
+  if (options?.shouldRollback) {
+    throw new Error("ATOMIC_TRANSACTION_TEST_ROLLBACK: Cleanly reverting demonstration transaction.");
   }
 });
+```
+
+---
+
+## 2.8 Functional Admin DBMS Operations & Trigger Engine
+
+PropAudit integrates a dedicated administrative DBMS operations console located at `app/admin/page.tsx` (`DbmsOperationsConsole.tsx`), backed by protected endpoints under `/api/admin/dbms/*`.
+
+### 1. Actual Admin Property INSERT
+- **Endpoint:** `POST /api/admin/dbms/properties`
+- **Security & Authorization:** Enforces `requireAdmin(request)`. The authenticated administrator's `userId` is assigned as `ownerId`.
+- **Validation:** Server-side validation on propertyType (`APARTMENT`, `HOUSE`, `VILLA`), listingType (`SALE`, `RENT`), strictly positive price and areaSqft, non-negative bedrooms/bathrooms, and non-empty strings.
+- **Prefix Guard:** Automatically prefixes title with `[DBMS CONSOLE] `.
+- **Status Guard:** Sets status to `DRAFT`.
+- **Atomic Transaction:** Inserts into `"Property"` and generates the initial `"PriceHistory"` baseline snapshot within a single interactive transaction.
+
+```sql
+-- Executed inside transaction:
+INSERT INTO "Property" (
+  "title", "description", "propertyType", "listingType", "price",
+  "areaSqft", "bedrooms", "bathrooms", "address", "city", "state", "pincode",
+  "latitude", "longitude", "status", "ownerId", "createdAt", "updatedAt"
+) VALUES (
+  $1, $2, $3, $4, $5,
+  $6, $7, $8, $9, $10, $11, $12,
+  NULL, NULL, 'DRAFT', $13, NOW(), NOW()
+) RETURNING "propertyId";
+
+INSERT INTO "PriceHistory" ("propertyId", "price", "recordedAt")
+VALUES ($1, $2, NOW())
+RETURNING "priceId";
+```
+
+### 2. Actual Admin Property UPDATE with Database Trigger & DROP DDL
+- **Endpoint:** `PATCH /api/admin/dbms/properties/[id]`
+- **Security Invariants:**
+  1. Target property must exist in the database.
+  2. Title must strictly begin with `[DBMS CONSOLE]`.
+  3. `ownerId` must strictly equal the authenticated administrator's `userId`.
+  4. Status must be `DRAFT`.
+- **Zero Duplicate Inserts:** The API does NOT manually insert into `PriceHistory`. The PostgreSQL database trigger `property_price_history_trigger` handles audit log creation automatically.
+
+#### DROP DDL Operations (Migration 20261102140500)
+To prevent duplicate audit log rows caused by an unconditioned legacy trigger and ensure clean idempotent re-application, the migration explicitly executes DROP DDL statements:
+```sql
+-- 1. Drop legacy trigger if present to prevent duplicate PriceHistory rows
+DROP TRIGGER IF EXISTS property_price_change_trigger ON public."Property";
+
+-- 2. Drop legacy function if present
+DROP FUNCTION IF EXISTS public.record_price_change();
+
+-- 3. Drop existing price history trigger to allow clean idempotent re-creation
+DROP TRIGGER IF EXISTS property_price_history_trigger ON public."Property";
+```
+
+#### Stored Function and Trigger Creation
+```sql
+-- PostgreSQL Stored Trigger Definition:
+CREATE OR REPLACE FUNCTION public.record_property_price_history()
+RETURNS TRIGGER AS $$
+BEGIN
+    INSERT INTO public."PriceHistory" ("propertyId", "price", "recordedAt")
+    VALUES (NEW."propertyId", NEW."price", CURRENT_TIMESTAMP);
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER property_price_history_trigger
+AFTER UPDATE OF price ON public."Property"
+FOR EACH ROW
+WHEN (OLD.price IS DISTINCT FROM NEW.price)
+EXECUTE FUNCTION public.record_property_price_history();
+```
+
+### 3. Actual Admin Property DELETE with Foreign-Key Cascades
+- **Endpoint:** `DELETE /api/admin/dbms/properties/[id]`
+- **Security Invariants:** Restricted strictly to `[DBMS CONSOLE]` DRAFT records owned by the authenticated admin. Ordinary marketplace records (properties 1–100) are protected with 403 Forbidden.
+- **Relational Integrity:** Utilizes PostgreSQL `ON DELETE CASCADE` foreign key references to safely purge dependent `PriceHistory` audit entries in the same atomic operation.
+
+```sql
+DELETE FROM "Property"
+WHERE "propertyId" = $1;
+```
+
+### 4. Live PostgreSQL System Catalog Schema Explorer
+- **Endpoint:** `GET /api/admin/dbms/schema` (Protected by `requireAdmin`)
+- **Component:** `components/DbmsSchemaExplorer.tsx`
+- **Read-Only Invariant:** Executes read-only queries against `information_schema` and `pg_catalog`. No arbitrary SQL execution permitted.
+- **Inspection Coverage:**
+  - Application tables: `Property`, `PropertyEmbedding`, `PropertyAnomaly`, `PriceHistory`, `PropertyAmenity`, `Amenity`, `User`.
+  - Column specifications, data types, nullability, and default expressions.
+  - Primary keys and relational foreign key linkages.
+  - Check constraints (e.g. `property_anomaly_status_check`, price positivity, etc.).
+  - PostgreSQL indexes, explicitly surfacing the `pgvector` HNSW index on `PropertyEmbedding(embedding vector_cosine_ops)`.
+  - Installed PostgreSQL triggers and PL/pgSQL function definitions.
+  - The live installed relational view `PropertyDashboardSummary`.
+
+### 5. Active Domain & Integrity CHECK Constraints
+Enforced via migrations `20261012_add_anomaly_status_constraint` and `20261102150000_add_property_price_constraints`:
+```sql
+-- Property Price strictly positive
+ALTER TABLE public."Property" ADD CONSTRAINT property_price_positive_check CHECK (price > 0);
+
+-- Property Area strictly positive
+ALTER TABLE public."Property" ADD CONSTRAINT property_area_positive_check CHECK ("areaSqft" > 0);
+
+-- Property Bedrooms non-negative
+ALTER TABLE public."Property" ADD CONSTRAINT property_bedrooms_non_negative_check CHECK (bedrooms >= 0);
+
+-- Property Bathrooms non-negative
+ALTER TABLE public."Property" ADD CONSTRAINT property_bathrooms_non_negative_check CHECK (bathrooms >= 0);
+
+-- Property Listing Type domain restriction
+ALTER TABLE public."Property" ADD CONSTRAINT property_listing_type_check CHECK ("listingType" IN ('SALE', 'RENT'));
+
+-- Property Type domain restriction
+ALTER TABLE public."Property" ADD CONSTRAINT property_type_check CHECK ("propertyType" IN ('APARTMENT', 'HOUSE', 'VILLA'));
+
+-- PriceHistory Price strictly positive
+ALTER TABLE public."PriceHistory" ADD CONSTRAINT price_history_price_positive_check CHECK (price > 0);
+
+-- PropertyAnomaly Review Status domain restriction
+ALTER TABLE public."PropertyAnomaly" ADD CONSTRAINT property_anomaly_status_check CHECK (status IN ('PENDING', 'CONFIRMED', 'DISMISSED'));
 ```
 
 ---

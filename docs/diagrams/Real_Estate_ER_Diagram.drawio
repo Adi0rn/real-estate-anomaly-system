@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Codex" version="24.7.17" type="device">
+  <diagram id="real-estate-er" name="Real Estate ER Diagram">
+    <mxGraphModel dx="1460" dy="1320" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1460" pageHeight="1320" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="Real Estate Price Anomaly Detection" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=26;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="60" y="30" width="1340" height="38" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="and Semantic Search System | Entity Relationship Diagram" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=18;" vertex="1" parent="1">
+          <mxGeometry x="60" y="72" width="1340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="Property" value="Property" style="swimlane;html=0;startSize=42;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=17;fontStyle=1;align=left;spacingLeft=14;fillColor=#dae8fc;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="540" y="180" width="340" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_0" value="PK  property_id" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="42" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_1" value="title" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="70" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_2" value="description" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="98" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_3" value="city" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="126" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_4" value="location" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="154" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_5" value="price" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="182" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_6" value="area_sqft" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="210" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_7" value="bedrooms" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="238" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_8" value="bathrooms" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="266" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_9" value="property_type" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="294" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Property_field_10" value="created_at" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Property">
+          <mxGeometry x="0" y="322" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PriceHistory" value="PriceHistory" style="swimlane;html=0;startSize=42;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=17;fontStyle=1;align=left;spacingLeft=14;fillColor=#eaf0f6;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="60" y="180" width="340" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="PriceHistory_field_0" value="PK  history_id" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="PriceHistory">
+          <mxGeometry x="0" y="42" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PriceHistory_field_1" value="FK  property_id  [required]" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PriceHistory">
+          <mxGeometry x="0" y="70" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PriceHistory_field_2" value="price" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PriceHistory">
+          <mxGeometry x="0" y="98" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PriceHistory_field_3" value="recorded_at" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PriceHistory">
+          <mxGeometry x="0" y="126" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly" value="PropertyAnomaly" style="swimlane;html=0;startSize=42;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=17;fontStyle=1;align=left;spacingLeft=14;fillColor=#eaf0f6;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="180" width="380" height="350" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_0" value="PK  anomaly_id" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="42" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_1" value="FK  property_id  [required]" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="70" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_2" value="expected_price" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="98" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_3" value="actual_price" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="126" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_4" value="price_difference" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="154" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_5" value="anomaly_score" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="182" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_6" value="reason" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="210" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_7" value="status" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="238" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_8" value="FK  reviewed_by  [nullable]" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="266" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_9" value="reviewed_at  [nullable]" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="294" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAnomaly_field_10" value="created_at" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyAnomaly">
+          <mxGeometry x="0" y="322" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyEmbedding" value="PropertyEmbedding" style="swimlane;html=0;startSize=42;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=17;fontStyle=1;align=left;spacingLeft=14;fillColor=#eaf0f6;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="60" y="720" width="340" height="154" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyEmbedding_field_0" value="PK  embedding_id" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="PropertyEmbedding">
+          <mxGeometry x="0" y="42" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyEmbedding_field_1" value="FK, UQ  property_id  [required]" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyEmbedding">
+          <mxGeometry x="0" y="70" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyEmbedding_field_2" value="embedding  (vector, 384 dimensions)" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyEmbedding">
+          <mxGeometry x="0" y="98" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyEmbedding_field_3" value="created_at" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="PropertyEmbedding">
+          <mxGeometry x="0" y="126" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAmenity" value="PropertyAmenity" style="swimlane;html=0;startSize=42;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=17;fontStyle=1;align=left;spacingLeft=14;fillColor=#eaf0f6;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="540" y="720" width="340" height="98" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAmenity_field_0" value="PK, FK  property_id  [required]" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="PropertyAmenity">
+          <mxGeometry x="0" y="42" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="PropertyAmenity_field_1" value="PK, FK  amenity_id  [required]" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="PropertyAmenity">
+          <mxGeometry x="0" y="70" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="User" value="User" style="swimlane;html=0;startSize=42;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=17;fontStyle=1;align=left;spacingLeft=14;fillColor=#eaf0f6;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="720" width="380" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="User_field_0" value="PK  user_id" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="User">
+          <mxGeometry x="0" y="42" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="User_field_1" value="name" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="User">
+          <mxGeometry x="0" y="70" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="User_field_2" value="email" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="User">
+          <mxGeometry x="0" y="98" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="User_field_3" value="password_hash" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="User">
+          <mxGeometry x="0" y="126" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="User_field_4" value="role  (USER / ADMIN)" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="User">
+          <mxGeometry x="0" y="154" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="User_field_5" value="created_at" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="User">
+          <mxGeometry x="0" y="182" width="380" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Amenity" value="Amenity" style="swimlane;html=0;startSize=42;horizontal=1;rounded=0;collapsible=0;container=1;recursiveResize=0;whiteSpace=wrap;fontFamily=Helvetica;fontSize=17;fontStyle=1;align=left;spacingLeft=14;fillColor=#eaf0f6;swimlaneFillColor=#ffffff;strokeColor=#6c8ebf;strokeWidth=1.5;" vertex="1" parent="1">
+          <mxGeometry x="540" y="1010" width="340" height="126" as="geometry" />
+        </mxCell>
+        <mxCell id="Amenity_field_0" value="PK  amenity_id" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;fontStyle=1;" vertex="1" parent="Amenity">
+          <mxGeometry x="0" y="42" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Amenity_field_1" value="name" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Amenity">
+          <mxGeometry x="0" y="70" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="Amenity_field_2" value="category" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;spacingLeft=14;strokeColor=none;fillColor=none;" vertex="1" parent="Amenity">
+          <mxGeometry x="0" y="98" width="340" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="property_history" value="has  |  1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;fontFamily=Helvetica;fontSize=13;fontColor=#37474f;labelBackgroundColor=#ffffff;strokeColor=#546e7a;strokeWidth=1.5;startArrow=ERone;endArrow=ERzeroToMany;startSize=16;endSize=16;exitX=0;exitY=0.2;entryX=1;entryY=0.5;" edge="1" parent="1" source="Property" target="PriceHistory">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="property_anomaly" value="flags  |  1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;fontFamily=Helvetica;fontSize=13;fontColor=#37474f;labelBackgroundColor=#ffffff;strokeColor=#546e7a;strokeWidth=1.5;startArrow=ERone;endArrow=ERzeroToMany;startSize=16;endSize=16;exitX=1;exitY=0.35;entryX=0;entryY=0.35;" edge="1" parent="1" source="Property" target="PropertyAnomaly">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="property_embedding" value="represents  |  1 : 0..1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;fontFamily=Helvetica;fontSize=13;fontColor=#37474f;labelBackgroundColor=#ffffff;strokeColor=#546e7a;strokeWidth=1.5;startArrow=ERone;endArrow=ERzeroToOne;startSize=16;endSize=16;exitX=0;exitY=0.8;entryX=1;entryY=0.5;" edge="1" parent="1" source="Property" target="PropertyEmbedding">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="460" y="460" />
+              <mxPoint x="460" y="797" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="property_junction" value="has  |  1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;fontFamily=Helvetica;fontSize=13;fontColor=#37474f;labelBackgroundColor=#ffffff;strokeColor=#546e7a;strokeWidth=1.5;startArrow=ERone;endArrow=ERzeroToMany;startSize=16;endSize=16;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="Property" target="PropertyAmenity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="user_review" value="reviews  |  0..1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;fontFamily=Helvetica;fontSize=13;fontColor=#37474f;labelBackgroundColor=#ffffff;strokeColor=#546e7a;strokeWidth=1.5;startArrow=ERzeroToOne;endArrow=ERzeroToMany;startSize=16;endSize=16;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="User" target="PropertyAnomaly">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="amenity_junction" value="links  |  1 : 0..N" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=0;fontFamily=Helvetica;fontSize=13;fontColor=#37474f;labelBackgroundColor=#ffffff;strokeColor=#546e7a;strokeWidth=1.5;startArrow=ERone;endArrow=ERzeroToMany;startSize=16;endSize=16;exitX=0.5;exitY=0;entryX=0.5;entryY=1;" edge="1" parent="1" source="Amenity" target="PropertyAmenity">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="embedding_note" value="SEMANTIC SEARCH&#10;One stored embedding at most per property.&#10;UQ on property_id enforces this constraint." style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;verticalAlign=top;spacing=12;rounded=0;fillColor=#fff8e1;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="60" y="990" width="340" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="review_note" value="ADMIN REVIEW&#10;reviewed_by references User.user_id.&#10;A pending anomaly can have no reviewer.&#10;Reviewers must have role = ADMIN." style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;verticalAlign=top;spacing=12;rounded=0;fillColor=#fff8e1;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="990" width="380" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="junction_note" value="Composite PK: (property_id, amenity_id)&#10;Property ↔ Amenity is many-to-many." style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;align=center;" vertex="1" parent="1">
+          <mxGeometry x="490" y="1170" width="440" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="PK = Primary key     FK = Foreign key     UQ = Unique     1 = Exactly one     0..1 = Zero or one     0..N = Zero or many" style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=13;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1240" width="1340" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="schema_note" value="Logical schema based on the project discussion. PriceHistory field names are illustrative; align them with the implemented schema." style="text;html=0;whiteSpace=wrap;overflow=hidden;align=left;verticalAlign=middle;fontFamily=Helvetica;fontColor=#263238;fontSize=11;fontColor=#607d8b;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1275" width="1340" height="24" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

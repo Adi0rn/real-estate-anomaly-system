@@ -108,7 +108,7 @@ test("Level 3 DBMS Query Suite", async (t) => {
     }
   });
 
-  await t.test("6. PropertyDashboardSummary View Simulation (Anti-Inflation Joins)", async () => {
+  await t.test("6. PropertyDashboardSummary Live View Query (Anti-Inflation Joins)", async () => {
     const results = await queryPropertyDashboardSummary({ limit: 10 });
     assert(Array.isArray(results), "Results should be an array");
     assert(results.length > 0, "Should return summary records");

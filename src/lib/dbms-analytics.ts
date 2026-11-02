@@ -697,8 +697,9 @@ GROUP BY
 `;
 
 /**
- * Executes a simulated query matching the exact projection and logic of the
- * PropertyDashboardSummary view without mutating the live database schema.
+ * Queries the persistent, live database view "PropertyDashboardSummary"
+ * which aggregates property metadata, owners, distinct price history count,
+ * distinct amenity count, and anomaly statuses.
  */
 export async function queryPropertyDashboardSummary(options?: {
   city?: string;
@@ -711,50 +712,29 @@ export async function queryPropertyDashboardSummary(options?: {
 
   const rawRows = await db.$queryRaw<RawDashboardViewRow[]>`
     SELECT
-      p."propertyId",
-      p."title",
-      p."propertyType",
-      p."listingType",
-      p."price"::text AS "price",
-      p."areaSqft",
-      p."bedrooms",
-      p."bathrooms",
-      p."city",
-      p."state",
-      p."status" AS "propertyStatus",
-      u."userId" AS "ownerId",
-      u."name" AS "ownerName",
-      u."email" AS "ownerEmail",
-      COUNT(DISTINCT ph."priceId")::int AS "priceHistoryCount",
-      MAX(ph."recordedAt")::text AS "latestPriceDate",
-      COUNT(DISTINCT pa."amenityId")::int AS "amenityCount",
-      COALESCE(panom."status", 'NONE') AS "anomalyStatus",
-      panom."anomalyScore"::text AS "anomalyScore"
-    FROM "Property" p
-    JOIN "User" u ON p."ownerId" = u."userId"
-    LEFT JOIN "PriceHistory" ph ON p."propertyId" = ph."propertyId"
-    LEFT JOIN "PropertyAmenity" pa ON p."propertyId" = pa."propertyId"
-    LEFT JOIN "PropertyAnomaly" panom ON p."propertyId" = panom."propertyId"
-    WHERE (${cityFilter}::text IS NULL OR p."city" = ${cityFilter})
-      AND (${typeFilter}::text IS NULL OR p."propertyType" = ${typeFilter})
-    GROUP BY
-      p."propertyId",
-      p."title",
-      p."propertyType",
-      p."listingType",
-      p."price",
-      p."areaSqft",
-      p."bedrooms",
-      p."bathrooms",
-      p."city",
-      p."state",
-      p."status",
-      u."userId",
-      u."name",
-      u."email",
-      panom."status",
-      panom."anomalyScore"
-    ORDER BY p."propertyId" ASC
+      "propertyId",
+      "title",
+      "propertyType",
+      "listingType",
+      "price"::text AS "price",
+      "areaSqft",
+      "bedrooms",
+      "bathrooms",
+      "city",
+      "state",
+      "propertyStatus",
+      "ownerId",
+      "ownerName",
+      "ownerEmail",
+      "priceHistoryCount",
+      "latestPriceDate"::text AS "latestPriceDate",
+      "amenityCount",
+      "anomalyStatus",
+      "anomalyScore"::text AS "anomalyScore"
+    FROM "PropertyDashboardSummary"
+    WHERE (${cityFilter}::text IS NULL OR "city" = ${cityFilter})
+      AND (${typeFilter}::text IS NULL OR "propertyType" = ${typeFilter})
+    ORDER BY "propertyId" ASC
     LIMIT ${limit};
   `;
 
@@ -782,7 +762,7 @@ export async function queryPropertyDashboardSummary(options?: {
 }
 
 // -----------------------------------------------------------------------------
-// G. Atomic Transaction Demonstration (Update Property + Insert PriceHistory)
+// G. Atomic Transaction Demonstration (Update Property + Trigger-Created PriceHistory)
 // -----------------------------------------------------------------------------
 export async function executeAtomicPriceUpdateTransaction(
   propertyId: number,
@@ -810,18 +790,21 @@ export async function executeAtomicPriceUpdateTransaction(
 
     const oldPrice = Number(current.price);
 
-    // 2. Insert into PriceHistory audit log
-    const [insertedHistory] = await tx.$queryRaw<RawInsertedPriceHistoryRow[]>`
-      INSERT INTO "PriceHistory" ("propertyId", "price", "recordedAt")
-      VALUES (${propertyId}, ${newPrice}, NOW())
-      RETURNING "priceId";
-    `;
-
-    // 3. Atomically update Property price and updatedAt
+    // 2. Atomically update Property price and updatedAt.
+    // The PostgreSQL trigger "property_price_history_trigger" automatically inserts
+    // the new PriceHistory audit log record (when OLD.price IS DISTINCT FROM NEW.price).
     await tx.$executeRaw`
       UPDATE "Property"
       SET "price" = ${newPrice}, "updatedAt" = NOW()
       WHERE "propertyId" = ${propertyId};
+    `;
+
+    // 3. Retrieve the record created automatically by property_price_history_trigger
+    const [triggerHistory] = await tx.$queryRaw<RawInsertedPriceHistoryRow[]>`
+      SELECT "priceId" FROM "PriceHistory"
+      WHERE "propertyId" = ${propertyId}
+      ORDER BY "recordedAt" DESC, "priceId" DESC
+      LIMIT 1;
     `;
 
     if (options?.shouldRollback) {
@@ -833,7 +816,7 @@ export async function executeAtomicPriceUpdateTransaction(
       propertyId,
       oldPrice,
       newPrice,
-      priceHistoryId: Number(insertedHistory.priceId),
+      priceHistoryId: triggerHistory ? Number(triggerHistory.priceId) : 0,
       rolledBack: false,
     };
   }).catch((err) => {

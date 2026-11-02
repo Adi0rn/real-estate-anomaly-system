@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import AnomalyRadar from "@/components/AnomalyRadar";
 import DbmsAnalyticsConsole from "@/components/DbmsAnalyticsConsole";
+import DbmsOperationsConsole from "@/components/DbmsOperationsConsole";
 import DatabaseNotice from "@/components/DatabaseNotice";
 import PropertyDetailModal from "@/components/PropertyDetailModal";
 import { AnomalyRecord } from "@/types";
@@ -28,7 +29,9 @@ export default function AdminPage() {
   const [error, setError] = useState<string | null>(null);
   const [isDbConnected, setIsDbConnected] = useState<boolean | null>(null);
   const [selectedPropertyId, setSelectedPropertyId] = useState<number | null>(null);
-  const [adminConsoleMode, setAdminConsoleMode] = useState<"anomalies" | "dbms-analytics">("anomalies");
+  const [adminConsoleMode, setAdminConsoleMode] = useState<
+    "anomalies" | "dbms-analytics" | "dbms-operations"
+  >("anomalies");
 
   // Review action state
   const [isReviewingId, setIsReviewingId] = useState<number | null>(null);
@@ -224,6 +227,67 @@ export default function AdminPage() {
     <div className="min-h-screen bg-[#fbfbfa] dark:bg-[#111315] text-slate-900 dark:text-[#f3f4f6] transition-colors duration-150">
       <Navbar isDbConnected={isDbConnected} />
 
+      {/* Admin Three-Mode Navigation Selector — Visibly placed immediately below global Navbar */}
+      <nav
+        aria-label="Admin Module Navigation"
+        className="border-b border-slate-200 dark:border-[#30363d] bg-white dark:bg-[#16191c] shadow-2xs"
+      >
+        <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+            <button
+              type="button"
+              id="admin-nav-anomalies"
+              onClick={() => setAdminConsoleMode("anomalies")}
+              className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                adminConsoleMode === "anomalies"
+                  ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-xs ring-1 ring-slate-900/10 dark:ring-white/10"
+                  : "border border-slate-200 dark:border-[#30363d] bg-[#fbfbfa] dark:bg-[#191c1f] text-slate-700 dark:text-[#a1a8b0] hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#202428]"
+              }`}
+            >
+              <IconShieldAlert className="w-4 h-4 text-amber-500" />
+              <span>Pricing Anomaly Audit Queue</span>
+              <span className="font-mono text-[10px] bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 px-1.5 py-0.5 rounded font-bold">
+                {anomalies.length}
+              </span>
+            </button>
+
+            <button
+              type="button"
+              id="admin-nav-dbms-analytics"
+              onClick={() => setAdminConsoleMode("dbms-analytics")}
+              className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                adminConsoleMode === "dbms-analytics"
+                  ? "bg-indigo-600 dark:bg-indigo-500 text-white shadow-xs ring-1 ring-indigo-700/20"
+                  : "border border-slate-200 dark:border-[#30363d] bg-[#fbfbfa] dark:bg-[#191c1f] text-slate-700 dark:text-[#a1a8b0] hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#202428]"
+              }`}
+            >
+              <IconBuilding className="w-4 h-4 text-indigo-400 dark:text-indigo-300" />
+              <span>Level 3 DBMS Relational Analytics</span>
+              <span className="font-mono text-[10px] bg-indigo-700 dark:bg-indigo-600 text-white px-1.5 py-0.5 rounded uppercase font-bold">
+                SQL Engine
+              </span>
+            </button>
+
+            <button
+              type="button"
+              id="admin-nav-dbms-operations"
+              onClick={() => setAdminConsoleMode("dbms-operations")}
+              className={`inline-flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                adminConsoleMode === "dbms-operations"
+                  ? "bg-emerald-600 dark:bg-emerald-500 text-white shadow-xs ring-1 ring-emerald-700/20"
+                  : "border border-slate-200 dark:border-[#30363d] bg-[#fbfbfa] dark:bg-[#191c1f] text-slate-700 dark:text-[#a1a8b0] hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#202428]"
+              }`}
+            >
+              <span className="h-2 w-2 rounded-full bg-emerald-400" />
+              <span>DBMS Operations &amp; Schema Console</span>
+              <span className="font-mono text-[10px] bg-emerald-700 dark:bg-emerald-600 text-white px-1.5 py-0.5 rounded uppercase font-bold">
+                DDL / DML
+              </span>
+            </button>
+          </div>
+        </div>
+      </nav>
+
       <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6 space-y-6">
         {/* Admin Header */}
         <div className="border-b border-slate-200/90 dark:border-[#30363d] pb-6">
@@ -234,10 +298,17 @@ export default function AdminPage() {
                 <span>Auditing Console • Authenticated Admin</span>
               </div>
               <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950 dark:text-white">
-                Statistical Pricing Anomaly Review
+                {adminConsoleMode === "anomalies" && "Statistical Pricing Anomaly Review"}
+                {adminConsoleMode === "dbms-analytics" && "Level 3 DBMS Relational Analytics"}
+                {adminConsoleMode === "dbms-operations" && "DBMS Operations & Schema Console"}
               </h1>
               <p className="mt-1 text-xs sm:text-sm text-slate-600 dark:text-[#a1a8b0] max-w-2xl leading-relaxed">
-                Supervise automated pricing valuation anomalies. Confirm valid market discrepancies or dismiss false positive alerts generated by machine learning benchmarks.
+                {adminConsoleMode === "anomalies" &&
+                  "Supervise automated pricing valuation anomalies. Confirm valid market discrepancies or dismiss false positive alerts generated by machine learning benchmarks."}
+                {adminConsoleMode === "dbms-analytics" &&
+                  "Inspect parameterized relational queries, multi-table JOINs, GROUP BY aggregations with HAVING, CTEs, window functions, and anti-Cartesian views."}
+                {adminConsoleMode === "dbms-operations" &&
+                  "Execute scoped transactions, trigger validations, cascade deletions, and live catalog inspections strictly within administrative boundaries."}
               </p>
             </div>
 
@@ -259,41 +330,6 @@ export default function AdminPage() {
           />
         )}
 
-        {/* Console Mode Selector */}
-        <div className="flex items-center gap-2 border-b border-slate-200 dark:border-[#30363d] pb-2">
-          <button
-            type="button"
-            onClick={() => setAdminConsoleMode("anomalies")}
-            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-              adminConsoleMode === "anomalies"
-                ? "bg-slate-900 dark:bg-white text-white dark:text-slate-900 shadow-2xs"
-                : "text-slate-600 dark:text-[#a1a8b0] hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#202428]"
-            }`}
-          >
-            <IconShieldAlert className="w-3.5 h-3.5" />
-            <span>Pricing Anomaly Audit Queue</span>
-            <span className="font-mono text-[10px] bg-slate-800 dark:bg-slate-200 text-white dark:text-slate-900 px-1.5 py-0.2 rounded">
-              {anomalies.length}
-            </span>
-          </button>
-
-          <button
-            type="button"
-            onClick={() => setAdminConsoleMode("dbms-analytics")}
-            className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-md text-xs font-semibold transition-colors ${
-              adminConsoleMode === "dbms-analytics"
-                ? "bg-indigo-600 dark:bg-indigo-500 text-white shadow-2xs"
-                : "text-slate-600 dark:text-[#a1a8b0] hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-[#202428]"
-            }`}
-          >
-            <IconBuilding className="w-3.5 h-3.5" />
-            <span>Level 3 DBMS Relational Analytics</span>
-            <span className="font-mono text-[10px] bg-indigo-700 dark:bg-indigo-600 text-white px-1.5 py-0.2 rounded uppercase">
-              SQL Engine
-            </span>
-          </button>
-        </div>
-
         {/* Anomaly Radar with Live Review Actions */}
         {adminConsoleMode === "anomalies" && (
           <AnomalyRadar
@@ -314,6 +350,9 @@ export default function AdminPage() {
 
         {/* Level 3 DBMS Analytics Console */}
         {adminConsoleMode === "dbms-analytics" && <DbmsAnalyticsConsole />}
+
+        {/* Functional DBMS Operations Console */}
+        {adminConsoleMode === "dbms-operations" && <DbmsOperationsConsole />}
       </main>
 
       {/* Property Details Quick Modal */}
